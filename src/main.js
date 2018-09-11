@@ -35,7 +35,35 @@ const r = [
     {
         path:'/driver',
         component:driver.default,
-        name:'网盘'
+        name:'网盘',
+        children:[
+			// 配置子路由
+			{
+			  path:'/D_driver/qiye',
+			  component:require('./components/D_driver/qiye/qiye.vue').default,
+			  name:'企业管理'
+			},
+			{
+				path:'/D_driver/my',
+				component:require('./components/D_driver/my/my.vue').default,
+				name:'个人模板'
+			  },
+			  {
+				path:'/D_driver/share',
+				component:require('./components/D_driver/share/share.vue').default,
+				name:'分享管理'
+			  },
+			  {
+				path:'/D_driver/trash',
+				component:require('./components/D_driver/trash/trash.vue').default,
+				name:'回收站管理'
+			  },
+            {
+                  //如果用户随便输入地址,转到首页   给一个重定位
+                    path:'*',
+                    redirect:'/D_driver/qiye'
+            }
+		]
     },
     {
         path:'/contact',
