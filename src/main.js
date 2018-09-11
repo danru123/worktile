@@ -10,10 +10,10 @@ Vue.use(VueRouter);
 // 使用路由管理几个子组件
 //引入子组件
 const News = require('./components/A_news/news.vue');
-const missions = require('./components/B_missions/missions.vue');
+const Missions = require('./components/B_missions/missions.vue');
 const Calendar = require('./components/C_calendar/calendar.vue');
-const driver = require('./components/D_driver/driver.vue');
-const contact = require('./components/E_contact/contact.vue');
+const Driver = require('./components/D_driver/driver.vue');
+const Contact = require('./components/E_contact/contact.vue');
 
 //路由配置
 const r = [
@@ -24,7 +24,7 @@ const r = [
     },
     {
         path:'/missions',
-        component:missions.default,
+        component:Missions.default,
         name:'项目'
     },
     {
@@ -34,13 +34,40 @@ const r = [
     },
     {
         path:'/driver',
-        component:driver.default,
+        component:Driver.default,
         name:'网盘'
     },
     {
-        path:'/contact',
-        component:contact.default,
-        name:'通讯录'
+        path:'/contact/',
+        component:Contact.default,
+        name:'通讯录',
+        children:[
+            {
+              path:'/contact/rc',
+              component:require('./components/E_contact/rc/rc.vue').default,
+              name:"日程助手",
+            },
+            {
+                path:'/contact/wp',
+                component:require('./components/E_contact/wp/wp.vue').default,
+                name:"网盘助手",
+            },
+            {
+                path:'/contact/xm',
+                component:require('./components/E_contact/xm/xm.vue').default,
+                name:"项目助手",
+            },
+            {
+                path:'/contact/xt',
+                component:require('./components/E_contact/xt/xt.vue').default,
+                name:"小特机器人",
+            },
+            {
+                path:'/contact/M',
+                component:require('./components/E_contact/M/m.vue').default,
+                name:"m",
+            }
+          ]
     },
     {
       //如果用户随便输入地址,转到首页   给一个重定位
