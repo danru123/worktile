@@ -71,7 +71,6 @@ export default {
           height: 88px;
           line-height: 123px;
           text-align: center;
-          
           }
         img{
             width: 50px;
