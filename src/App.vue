@@ -26,25 +26,25 @@ export default {
       tabNav: [
         {
           title: "消息",
-          url: "./news"
+          url: "/news"
         },
         {
           title: "项目",
-          url: "./missions"
+          url: "/missions"
         },
         {
           title: "日历",
-          url: "./calendar"
+          url: "/calendar"
         },
         {
           title: "网盘",
-          url: "./driver"
+          url: "/driver"
 }
       ],
       tabNav1: [
         {
           title: "通讯录",
-          url: "./contact"
+          url: "/contact"
         }
       ]
     };

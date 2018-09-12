@@ -5,7 +5,7 @@
             <div class="title">
                 <span class="year">{{year}}</span>年<span class="month">{{month}}</span>月
             </div>
-            <button @click="add"><i class="iconfont icon-arrow-right-copy"></i></button>
+            <button @click="add"><i class="iconfont icon-xiangyou"></i></button>
         </div>
         <table>
             <thead>
@@ -35,6 +35,7 @@ export default {
       month: 1
     };
   },
+  
   created() {
     this.nowYM();
   },

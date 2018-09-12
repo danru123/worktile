@@ -3,7 +3,7 @@
         <div class="left">
             <div class="title">
                 <span>日历</span>
-                <i class="iconfont icon-rili2"></i>
+                <i class="iconfont icon-rili1"></i>
             </div>
             <div class="calendar-list-wrap">
               <!-- 日历 -->
@@ -23,33 +23,33 @@
 
             <!-- 团队日程 -->
             <router-link to="/calendar/all" class="toc-section" >
-                <div class="section-header schedule" @click="team">
+                <div class="section-header schedule">
                     <a><div class="tran"></div></a>
                     <a>团队日程</a>
-                    <a><i class="iconfont icon-more"></i></a>
+                    <a><i class="iconfont icon-shenglvehao-"></i></a>
                 </div>
                 <div class="section-body">
                     <transition name="fade">
                     <ul v-show="teamShow">
                         <li>
-                            <i class="side iconfont" @click="add_yes" :class="{'icon-danduduihao':yes}"></i>
+                            <i class="side iconfont" @click="add_yes" :class="{'icon-danduduihao1':yes}"></i>
                             <span>会议安排</span>
-                            <i class="iconfont icon-more"></i>
+                            <i class="iconfont icon-shenglvehao-"></i>
                         </li>
                         <li>
-                            <i class="side iconfont" @click="add_yes" :class="{'icon-danduduihao':yes}"></i>
+                            <i class="side iconfont" @click="add_yes" :class="{'icon-danduduihao1':yes}"></i>
                             <span>会议安排</span>
-                            <i class="iconfont icon-more"></i>
+                            <i class="iconfont icon-shenglvehao-"></i>
                         </li>
                         <li>
-                            <i class="side iconfont" @click="add_yes" :class="{'icon-danduduihao':yes}"></i>
+                            <i class="side iconfont" @click="add_yes" :class="{'icon-danduduihao1':yes}"></i>
                             <span>会议安排</span>
-                            <i class="iconfont icon-more"></i>
+                            <i class="iconfont icon-shenglvehao-"></i>
                         </li>
                         <li>
-                            <i class="side iconfont" @click="add_yes" :class="{'icon-danduduihao':yes}"></i>
+                            <i class="side iconfont" @click="add_yes" :class="{'icon-danduduihao1':yes}"></i>
                             <span>会议安排</span>
-                            <i class="iconfont icon-more"></i>
+                            <i class="iconfont icon-shenglvehao-"></i>
                         </li>
                     </ul>
                     </transition>
@@ -57,7 +57,7 @@
             </router-link>
             <!-- 成员日程 -->
             <router-link to="/calendar/members" class="toc-section">
-                <div class="section-header schedule" @click="member_Show">
+                <div class="section-header schedule" >
                     <a><div class="tran"></div></a>
                     <a>成员日程</a>
                     <a><i class="iconfont icon-addition"></i></a>
@@ -195,31 +195,12 @@ export default {
       this.end_month = now.getMonth() + 1;
       this.end_day = now.getDay() + 1;
     },
-
     add_yes(event) {
       this.yes = !this.yes;
     },
-    team(el) {
-      if (this.teamShow == false) {
-        this.teamShow = !this.teamShow;
-        el.target.children[0].children[0].style.transform = "rotate(45deg)";
-      } else {
-        this.teamShow = !this.teamShow;
-        el.target.children[0].children[0].style.transform = "rotate(0deg)";
-      }
-    },
-    member_Show(el) {
-      if (this.memberShow == false) {
-        this.memberShow = !this.memberShow;
-        el.target.children[0].children[0].style.transform = "rotate(45deg)";
-      } else {
-        this.memberShow = !this.memberShow;
-        el.target.children[0].children[0].style.transform = "rotate(0deg)";
-      }
-    }
+    
   },
   created() {
-    this.init();
   }
 };
 </script>
@@ -269,9 +250,10 @@ div.left {
   }
 }
 div.right {
-  float: left;
-  overflow: hidden;
+  width: calc(100% -240px);
   height: 100%;
+  overflow: hidden;
+  background: #ccc;
 }
 .calendar-list-wrap {
   padding: 10px;
