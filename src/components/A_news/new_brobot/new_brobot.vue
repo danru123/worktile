@@ -25,15 +25,15 @@ export default {
             vList:[
                 {
                     title:'消息',
-                    url:'/A_news/new_brobot/a_mess/',
+                    url:'/news/new_brobot/a_mess/',
                 },
                 {
                     title:'文件',
-                    url:'/A_news/new_brobot/b_file/',
+                    url:'/news/new_brobot/b_file',
                 },
                 {
                     title:'固定信息',
-                    url:'/A_news/new_brobot/c_info/',
+                    url:'/news/new_brobot/c_info',
                 }
             ]
         }

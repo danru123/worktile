@@ -43,7 +43,7 @@ export default {
             position: absolute;
             left: 1%;
             top: 3%;
-            background: #fff;
+            background: #ffffff;
             .new_day{
                 position: relative;
                 height: 20px;

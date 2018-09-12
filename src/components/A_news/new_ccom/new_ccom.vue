@@ -3,8 +3,8 @@
         <div class="adriver_top">
             <span>
                 <img src="../../../assets/6.png" style="width:25px;height:25px;border-radius:50%">
-                企业公告12
-                <em style="color:#ccc;font-size:14px;padding-left:10px;">用于全企业成员发布公告</em>
+                企业公告
+                <em style="color:#ccc;padding-left:10px;">用于全企业成员发布公告</em>
             </span>
             <ul class="new_nav">
                 <li v-for="item of vList" :class="{cur : $route.name.indexOf(item.title) != -1}">
@@ -25,18 +25,15 @@ export default {
             vList:[
                 {
                     title:'消息',
-                    url:'/A_news/new_brobot/a_mess/',
+                    url:'/news/new_ccom/a_com1/',
                 },
                 {
                     title:'文件',
-                    url:'/A_news/new_brobot/b_file/',
+                    url:'/news/new_ccom/b_com2/',
                 },
                 {
                     title:'固定信息',
-                    url:'/A_news/new_brobot/c_info/',
-                },
-                {
-
+                    url:'/news/new_ccom/c_com3/',
                 }
             ]
         }

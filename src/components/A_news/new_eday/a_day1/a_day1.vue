@@ -1,13 +1,13 @@
 <template>
     <div class="new_detail">
         <div class="new_deta_main">
-            <span>企业公告由系统自动创建，所有企业成员都会自动加入到当前群组，该群组无法删除。</span>
+            <span>此私有群组由M于 9月11日创建，只有被邀请加入群组的成员才可以参与聊天。</span>
             <div>
                 <a><i class="iconfont icon-gongju"></i> 
                     添加集成服务
                 </a>
-                <a><i class="iconfont icon-hao"></i> 
-                    加入更多群组
+                <a><i class="iconfont icon-chengyuan-tianjia1"></i> 
+                    添加新成员
                 </a>
             </div>
             <div class="new_day">
