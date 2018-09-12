@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="big-Box">
         <div class="left">
             <div class="title">
                 <span>日历</span>
@@ -65,16 +65,24 @@
             </router-link>
         </div>
         <div class="right">
-            <router-view></router-view>
+            <router-view :show="isShow" @Fshow="getShow"></router-view>
         </div>
+        <transition name="fade">
+          <div class="mark" v-show="isShow">
+            <create :isshow="isShow" @close="getCshow"></create>
+          </div>
+        </transition>
+        
     </div>
 </template>
 
 <script>
-import rili from "./components/rili";
+import rili from "./components/rili"
+import create from './children/my_create'
 export default {
   components: {
-    rili
+    rili,
+    create
   },
   data() {
     return {
@@ -92,97 +100,6 @@ export default {
       memberShow: false
     };
   },
-  computed: {
-    schedule() {
-      var arr = [];
-      var s = JSON.parse(localStorage.getItem("rili"));
-
-      for (var i = 0; i < this.calender.length / 7; i++) {
-        arr.push([]);
-        for (var j = 0; j < 3; j++) {
-          arr[i].push([]);
-          for (var k = 0; k < 7; k++) {
-            console.log(this.calender[i * 7 + k]);
-
-            arr[i][j].push({
-              colspan: 1,
-              fullDay: this.calender[i * 7 + k].fullDay,
-              week: k
-            });
-          }
-        }
-      }
-
-      s.forEach(item => {
-        var start = new Date(
-          item.start.toString().substr(0, 4),
-          item.start.toString().substr(4, 2) - 1,
-          item.start.toString().substr(6, 2)
-        );
-        var end = new Date(
-          item.end.toString().substr(0, 4),
-          item.end.toString().substr(4, 2) - 1,
-          item.end.toString().substr(6, 2)
-        );
-        var during = (end - start) / 86400000 + 1;
-
-        var flag = true;
-        arr.forEach((week, weekidx) => {
-          for (var i = 0; i < 3; i++) {
-            // 遍历td
-            for (var j = 0; j < 7; j++) {
-              if (week[i][j]) {
-                if (
-                  week[i][j].fullDay == item.start &&
-                  flag &&
-                  !week[i][j].title
-                ) {
-                  var nowWeekDuring =
-                    during + week[i][j].week <= 7
-                      ? during
-                      : 7 - week[i][j].week;
-                  console.log(during, week[i][j]);
-                  // var nowWeekDuring = during + week[i][j].week <= 7 ? during : 7 - week[i][j].week;
-
-                  week[i][j].title = item.title;
-                  week[i][j].colspan = nowWeekDuring;
-                  week[i].splice(j + 1, nowWeekDuring - 1);
-                  // 上锁
-                  flag = false;
-
-                  // 以下内容就是后边跨周持续时间的内容,跟第一周没有关系了
-                  //信号量,剩余的事务持续时间
-                  var rest = during - nowWeekDuring;
-                  console.log(rest);
-
-                  var count = 0;
-
-                  while (rest > 0) {
-                    count++;
-
-                    var nextWeekDuring = rest >= 7 ? 7 : rest;
-                    for (var n = 0; n < 3; n++) {
-                      // 判断如果当前行有标题,就去下一行
-                      if (arr[weekidx + count][n][0].title) {
-                        continue;
-                      }
-                      //weekidx是起始周 count 垮了几周
-                      arr[weekidx + count][n][0].title = item.title;
-                      arr[weekidx + count][n][0].colspan = rest;
-                      arr[weekidx + count][n].splice(1, nextWeekDuring - 1);
-                      break;
-                    }
-                    rest -= 7;
-                  }
-                }
-              }
-            }
-          }
-        });
-      });
-      return arr;
-    }
-  },
   methods: {
     nowTime() {
       let now = new Date();
@@ -198,6 +115,12 @@ export default {
     add_yes(event) {
       this.yes = !this.yes;
     },
+    getShow(data){
+      this.isShow = data;
+    },
+    getCshow(data){
+      this.isShow = data;
+    }
     
   },
   created() {
@@ -260,7 +183,6 @@ div.right {
   .calendar-panel {
     width: 100%;
     height: 200px;
-
     div.header {
       width: 100%;
       height: 30px;
@@ -350,5 +272,17 @@ div.tran:hover {
   border-right: 4px solid #22d7bb ;
   }
   
+}
+
+div.big-Box{
+  position: relative;
+  div.mark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
 }
 </style>

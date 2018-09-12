@@ -39,18 +39,20 @@
                 </tr>
             </tbody>
         </table>
+        
     </div>
 </template>
 
 <script>
 export default {
+  
   data() {
     return {
       year: 1970,
       month: 1
     };
   },
-  
+
   created() {
     this.nowYM();
   },
@@ -112,107 +114,107 @@ export default {
       this.month = nowMonth;
     },
     close() {
-        this.month--;
-        if (this.month<=0) {
-            this.year--;
-            this.month = 12;
-        }
+      this.month--;
+      if (this.month <= 0) {
+        this.year--;
+        this.month = 12;
+      }
     },
-    add(){
-        this.month++;
-        if (this.month>=12) {
-            this.year++;
-            this.month = 1;
-        }
+    add() {
+      this.month++;
+      if (this.month >= 12) {
+        this.year++;
+        this.month = 1;
+      }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-table{
-    width: calc(100% - 20px);
-    height: 100%;
-    margin: 10px;
-    margin-right: 10px;
-    background: #fff;
-    border-collapse: collapse;
+table {
+  width: calc(100% - 20px);
+  height: 100%;
+  margin: 10px;
+  margin-right: 10px;
+  background: #fff;
+  border-collapse: collapse;
 }
-div.header{
-    width: 100%;
+div.header {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  background: #fff;
+  div.logo {
+    float: left;
+    margin-left: 10px;
+    i {
+      display: inline-block;
+      font-size: 20px;
+      cursor: pointer;
+      color: #22d7bb;
+    }
+    span {
+      display: inline-block;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+  }
+  div.center {
+    text-align: center;
+    float: right;
+    width: 150px;
+    font-size: 16px;
+    margin-right: 120px;
+    overflow: hidden;
     height: 50px;
     line-height: 50px;
-    position: relative;
-    background: #fff;
-    div.logo{
+  }
+  div.header_right {
+    float: right;
+    overflow: hidden;
+    button.create {
+      width: 110px;
+      height: 30px;
+      background: #22d7bb;
+      border-color: #22d7bb;
+      color: white;
+      border-radius: 20px;
+      margin-right: 20px;
+      margin-top: 10px;
+      &:hover {
+        box-shadow: 0 2px 5px 1px rgba(34, 215, 187, 0.6);
+      }
+    }
+    ul {
+      overflow: hidden;
+      height: 20px;
+      border-radius: 3px;
+      margin: 18px 10px 0 0;
+      border-left: none;
+      li {
+        border: 1px solid #ccc;
         float: left;
-        margin-left: 10px;
-        i{
-            display: inline-block;
-            font-size: 20px;
-            cursor: pointer;
-            color: #22d7bb;
-        }
-        span{
-            display: inline-block;
-            margin-left: 20px;
-            font-size: 16px;
-        }
-    }
-    div.center{
-        text-align: center;
-        float: right;
-        width: 150px;
-        font-size: 16px;
-        margin-right: 120px;
+        list-style-type: none;
         overflow: hidden;
-        height: 50px;
-        line-height: 50px;
-    }
-    div.header_right{
-        float: right;
-        overflow: hidden;
-        button.create{
-            width: 110px;
-            height: 30px;
-            background: #22d7bb;
-            border-color: #22d7bb;
-            color: white;
-            border-radius: 20px;
-            margin-right: 20px;
-            margin-top: 10px;
-            &:hover{
-                box-shadow: 0 2px 5px 1px rgba(34,215,187,.6);
-            }
+        border-left: none;
+        box-sizing: border-box;
+        &:first-child {
+          border-left: 1px solid #ccc;
         }
-        ul{
-            overflow: hidden;
-            height: 20px;
-            border-radius: 3px;
-            margin: 18px 10px 0 0;
-            border-left: none;
-            li{
-                border:1px solid #ccc;
-                float: left;
-                list-style-type: none;
-                overflow: hidden;
-                border-left: none;
-                box-sizing: border-box;
-                &:first-child{
-                    border-left: 1px solid #ccc;
-                }
-                &:hover{
-                    border: 1px solid #22d7bb;
-                }
-                button{
-                    width: 70px;
-                    height: 100%;
-                    margin: 0;
-                    font-size: 12px;
-                }
-            }
+        &:hover {
+          border: 1px solid #22d7bb;
         }
+        button {
+          width: 70px;
+          height: 100%;
+          margin: 0;
+          font-size: 12px;
+        }
+      }
     }
+  }
 }
 button {
   float: left;
@@ -227,11 +229,11 @@ button {
   cursor: pointer;
   overflow: hidden;
   text-align: center;
-  i{
-      display: block;   
+  i {
+    display: block;
   }
-  &:last-child{
-      margin-right: 10px;
+  &:last-child {
+    margin-right: 10px;
   }
 }
 div.title {
@@ -241,25 +243,26 @@ div.title {
   width: calc(100% - 40px);
   text-align: center;
 }
-table{
-    th{
-        font-weight: normal;
-        height: 40px;
-    }
-    tr,td{
-        text-align: center;
-    }
-    td{
-        width: calc(100% / 7);
-        height: 100px;
-        border:1px solid #aaa;
-        border-left: 0px;
-        border-bottom: 0px;
-        text-align: left;
-        vertical-align: top;
-    }
+table {
+  th {
+    font-weight: normal;
+    height: 40px;
+  }
+  tr,
+  td {
+    text-align: center;
+  }
+  td {
+    width: calc(100% / 7);
+    height: 100px;
+    border: 1px solid #aaa;
+    border-left: 0px;
+    border-bottom: 0px;
+    text-align: left;
+    vertical-align: top;
+  }
 }
-td.cur{
-    color: gray
+td.cur {
+  color: gray;
 }
 </style>

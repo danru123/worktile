@@ -6,7 +6,7 @@
                 <span>我的日程</span>
             </div>
             <div class="header_right">
-                <button class="create">+ 新建日程</button>
+                <button class="create" @click="feishow">+ 新建日程</button>
                 <ul>
                     <li><button>月</button></li>
                     <li><button>周</button></li>
@@ -35,27 +35,35 @@
             <tbody>
                 <tr v-for="(item,index) in calender.length / 7">
                     <td v-for="item in 7" :class="{cur:calender[7*index+(item-1)].cur}">{{calender[7*index + (item
-                        -1)].fullDay}}</td>
+                        -1)].day}}</td>
                 </tr>
             </tbody>
         </table>
+        <schedule class="schedule" :calender="calender"></schedule>
+        
     </div>
 </template>
 
 <script>
+import schedule from "./my_schedule";
 export default {
+  components: {
+    schedule,
+  },
   data() {
     return {
       year: 1970,
-      month: 1
+      month: 1,
     };
   },
-  
+  props: ['show'],
   created() {
     this.nowYM();
   },
   computed: {
     calender() {
+      console.log(this.show);
+      
       var arr = [];
       var month = new Date(this.year, this.month, 0).getDate(); // 本月天数
       var months = new Date(this.year, this.month - 1, 0).getDate(); // 上月天数
@@ -74,7 +82,8 @@ export default {
         arr.unshift({
           day: months,
           cur: true,
-          fullDay: `${buling(months)}`
+          day: `${buling(months)}`,
+          fullDay: `${pyear}${buling(pmonth)}${buling(months)}`
         });
         months--;
       }
@@ -84,7 +93,8 @@ export default {
         arr.push({
           day: _a,
           cur: false,
-          fullDay: `${buling(_a)}`
+          day: `${buling(_a)}`,
+          fullDay: `${this.year}${buling(this.month)}${buling(_a)}`
         });
         _a++;
       }
@@ -95,7 +105,8 @@ export default {
         arr.push({
           day: _a,
           cur: true,
-          fullDay: `${buling(_a)}`
+          day: `${buling(_a)}`,
+          fullDay: `${nyear}${buling(nmonth)}${buling(_a)}`
         });
         _a++;
       }
@@ -112,95 +123,102 @@ export default {
       this.month = nowMonth;
     },
     close() {
-        this.month--;
-        if (this.month<=0) {
-            this.year--;
-            this.month = 12;
-        }
+      this.month--;
+      if (this.month <= 0) {
+        this.year--;
+        this.month = 12;
+      }
     },
-    add(){
-        this.month++;
-        if (this.month>=12) {
-            this.year++;
-            this.month = 1;
-        }
+    add() {
+      this.month++;
+      if (this.month >= 12) {
+        this.year++;
+        this.month = 1;
+      }
+    },
+    feishow(){
+      this.$emit('Fshow',!this.show)
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-table{
-    width: calc(100% - 20px);
-    height: 100%;
-    margin: 10px;
-    margin-right: 10px;
-    background: #fff;
-    border-collapse: collapse;
-}
-div.header{
-    width: 100%;
+div.header {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  background: #fff;
+  div.logo {
+    float: left;
+    margin-left: 10px;
+    i {
+      display: inline-block;
+      font-size: 20px;
+      cursor: pointer;
+      color: #22d7bb;
+    }
+    span {
+      display: inline-block;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+  }
+  div.center {
+    text-align: center;
+    float: right;
+    width: 150px;
+    font-size: 16px;
+    margin-right: 120px;
+    overflow: hidden;
     height: 50px;
     line-height: 50px;
-    position: relative;
-    background: #fff;
-    div.logo{
+  }
+  div.header_right {
+    float: right;
+    overflow: hidden;
+    button.create {
+      width: 110px;
+      height: 30px;
+      background: #22d7bb;
+      border-color: #22d7bb;
+      color: white;
+      border-radius: 20px;
+      margin-right: 20px;
+      margin-top: 10px;
+      &:hover {
+        box-shadow: 0 2px 5px 1px rgba(34, 215, 187, 0.6);
+      }
+    }
+    ul {
+      overflow: hidden;
+      height: 20px;
+      border-radius: 3px;
+      margin: 18px 10px 0 0;
+      border-left: none;
+      li {
+        border: 1px solid #ccc;
         float: left;
-    }
-    div.center{
-        text-align: center;
-        float: right;
-        width: 150px;
-        font-size: 16px;
-        margin-right: 120px;
+        list-style-type: none;
         overflow: hidden;
-        height: 50px;
-        line-height: 50px;
-    }
-    div.header_right{
-        float: right;
-        overflow: hidden;
-        button.create{
-            width: 110px;
-            height: 30px;
-            background: #22d7bb;
-            border-color: #22d7bb;
-            color: white;
-            border-radius: 20px;
-            margin-right: 20px;
-            margin-top: 10px;
-            &:hover{
-                box-shadow: 0 2px 5px 1px rgba(34,215,187,.6);
-            }
+        border-left: none;
+        box-sizing: border-box;
+        &:first-child {
+          border-left: 1px solid #ccc;
         }
-        ul{
-            overflow: hidden;
-            height: 20px;
-            border-radius: 3px;
-            margin: 18px 10px 0 0;
-            border-left: none;
-            li{
-                border:1px solid #ccc;
-                float: left;
-                list-style-type: none;
-                overflow: hidden;
-                border-left: none;
-                box-sizing: border-box;
-                &:first-child{
-                    border-left: 1px solid #ccc;
-                }
-                &:hover{
-                    border: 1px solid #22d7bb;
-                }
-                button{
-                    width: 70px;
-                    height: 100%;
-                    margin: 0;
-                    font-size: 12px;
-                }
-            }
+        &:hover {
+          border: 1px solid #22d7bb;
         }
+        button {
+          width: 70px;
+          height: 100%;
+          margin: 0;
+          font-size: 12px;
+        }
+      }
     }
+  }
 }
 button {
   float: left;
@@ -215,11 +233,11 @@ button {
   cursor: pointer;
   overflow: hidden;
   text-align: center;
-  i{
-      display: block;   
+  i {
+    display: block;
   }
-  &:last-child{
-      margin-right: 10px;
+  &:last-child {
+    margin-right: 10px;
   }
 }
 div.title {
@@ -229,25 +247,47 @@ div.title {
   width: calc(100% - 40px);
   text-align: center;
 }
-table{
-    th{
-        font-weight: normal;
-        height: 40px;
-    }
-    tr,td{
-        text-align: center;
-    }
-    td{
-        width: calc(100% / 7);
-        height: 100px;
-        border:1px solid #aaa;
-        border-left: 0px;
-        border-bottom: 0px;
-        text-align: left;
-        vertical-align: top;
-    }
+table {
+  width: calc(100% - 20px);
+  height: 100%;
+  margin: 10px;
+  margin-right: 10px;
+  background: #fff;
+  border-collapse: collapse;
+  th {
+    font-weight: normal;
+    height: 40px;
+  }
+  tr,
+  td {
+    text-align: center;
+  }
+  td {
+    width: calc(100% / 7);
+    height: 100px;
+    border: 1px solid #aaa;
+    border-left: 0px;
+    border-bottom: 0px;
+    text-align: left;
+    vertical-align: top;
+  }
 }
-td.cur{
-    color: gray
+td.cur {
+  color: gray;
+}
+div.box {
+  position: relative;
+  div.schedule {
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: 100%;
+    overflow: hidden;
+  }
+}
+div.mark_create{
+    position: absolute;
+    top: 0;
 }
 </style>
