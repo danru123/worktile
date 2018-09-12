@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-
+import "babel-polyfill"
 Vue.use(Vuex);
 
 Vue.use(VueRouter);
@@ -66,6 +66,20 @@ const r = [
                 path:'/contact/M',
                 component:require('./components/E_contact/M/m.vue').default,
                 name:"m",
+            },
+            {
+                path:'/contact/channels/123',
+                component:require('./components/E_contact/channels/123.vue').default,
+                name:"123",
+            },
+            {
+                path:'/contact/channels/forth',
+                component:require('./components/E_contact/channels/forth.vue').default,
+                name:"四组",
+            },
+            {
+                path:'/contact/',
+                redirect:'/contact/M'
             }
           ]
     },
@@ -85,7 +99,34 @@ const router = new VueRouter({
 //配置vuex
 const store = new Vuex.Store({
     state:{
-      count:1
+      count:1,
+      member:[]
+    },
+    mutations:{
+        ADD(state,payload){
+            state.member.push(payload);
+         },
+         GETALL(state,payload){
+            state.member=payload;
+        },
+    },
+    actions:{
+        async GETALL(context,payload){
+            //请求数据
+            var data=await fetch('../mapList/').then(res=>res.json());
+            context.commit('GETALL',data);
+        },
+        async ADD({commit},payload){
+            //上传数据
+            var data=await fetch('../mapList/',{
+                "method":"POST",
+                "headers":{
+                    "Content-Type":"application/json"
+                },
+                "body":JSON.stringify(payload)
+            }).then(res=>res.json());
+            commit('ADD',data);
+        },
     }
 });
 
