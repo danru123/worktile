@@ -22,6 +22,7 @@ import all from './components/C_calendar/children/all.vue'
 import members from './components/C_calendar/children/members.vue'
 import my from './components/C_calendar/children/my.vue'
 
+
 //路由配置
 const r = [
     {

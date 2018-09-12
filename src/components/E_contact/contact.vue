@@ -75,7 +75,7 @@
                 tabNav:[
                     {
                         title:'日程助手',
-                        url:"./rc",
+                        url:"/contact/rc",
                         image:'/dist/calendar_160x160.png'
                     },
                     {
