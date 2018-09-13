@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="big-Box">
         <div class="left">
             <div class="title">
@@ -73,10 +74,15 @@
           </div>
         </transition>
         
+=======
+    <div>
+        <h1>我是日历</h1>
+>>>>>>> wxl
     </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import rili from "./components/rili"
 import create from './children/my_create'
 export default {
@@ -285,4 +291,13 @@ div.big-Box{
     overflow: hidden;
   }
 }
+=======
+    export default {
+        name: "calendar"
+    }
+</script>
+
+<style scoped>
+
+>>>>>>> wxl
 </style>

@@ -1,5 +1,6 @@
 <template>
     <div>
+<<<<<<< HEAD
        <div class="main-body-side">
            <div style="overflow:hidden">
                <span class="title ">通讯录</span>
@@ -235,10 +236,20 @@
                 name='';
             }
         }
+=======
+        <h1>我是通讯录</h1>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "address"
+>>>>>>> wxl
     }
 </script>
 
 <style scoped>
+<<<<<<< HEAD
     .main-body-side{
         position: relative;
         width: 240px;
@@ -496,4 +507,7 @@
         overflow-y: auto;
         box-sizing: border-box;
     }
+=======
+
+>>>>>>> wxl
 </style>

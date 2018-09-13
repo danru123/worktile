@@ -1,11 +1,22 @@
 <template>
+<<<<<<< HEAD
   <div style="height: 100%;width:100%">
+=======
+  <div style="height: 100%;">
+>>>>>>> wxl
     <header>
       <div class="name">
           <img src="./assets/name.png" alt="">
       </div>
       <ul>
+<<<<<<< HEAD
         <li v-for="item of tabNav">
+=======
+        <!-- 样式要在点击的标题与路由中的标题匹配时展示 -->
+        <!-- <li v-for="item of tabNav"  > -->
+            <li v-for="item of tabNav" :class="{cur : $route.name.indexOf(item.title) != -1}">
+          <!-- 跳转 -->
+>>>>>>> wxl
           <router-link :to='item.url'>{{item.title}}</router-link>
         </li>
       </ul>
@@ -15,11 +26,16 @@
       </div>
     </header>
     <!-- 用于展示路由连接的组件 -->
+<<<<<<< HEAD
     <router-view class="nav"></router-view>
+=======
+    <router-view></router-view>
+>>>>>>> wxl
   </div>
 
 </template>
 <script>
+<<<<<<< HEAD
 <<<<<<< HEAD
 export default {
   data() {
@@ -47,6 +63,8 @@ export default {
           title: "通讯录",
           url: "/contact"
 =======
+=======
+>>>>>>> wxl
     export default {
         name: 'app',
         data () {
@@ -72,6 +90,7 @@ export default {
                 tabNav1:[
                      {
                         title:'通讯录',
+<<<<<<< HEAD
                         url:'/contact/'
                     }
                 ]
@@ -86,6 +105,18 @@ export default {
 
 <style>
       #app{
+=======
+                        url:'/contact'
+                    }
+                ]
+            }
+        }
+    }
+</script>
+
+<style>
+     #app{
+>>>>>>> wxl
             width: 100%;
             height: 100%;
         }
@@ -103,11 +134,15 @@ export default {
           height: 88px;
           line-height: 123px;
           text-align: center;
+<<<<<<< HEAD
           }
        header img{
             width: 50px;
             height: 50px;
             border-radius: 12px;
+=======
+          
+>>>>>>> wxl
         }
         .name img:hover{
           opacity: .7;
