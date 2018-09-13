@@ -14,54 +14,6 @@
         <div class="rv">
             <router-view></router-view>
         </div>
-
-        <!-- <div class="tan" v-show='isShow'>
-            <div class="tan_up">
-                <h3>创建群组</h3>
-                <span @click="clo()">X</span>
-            </div>
-            <div class="tan_down">
-                 <div class="tan_d_up">
-                     <div class="input">
-                          <input type="text" placeholder="群组名称" class="form">
-                     </div>
-                 </div>
-                 <div class="tan_d_down">
-                      <div class="color">
-                          <ul>
-                              <li v-for="item of item" >
-                                  <span :class="item.color"></span>
-                              </li>
-                          </ul>
-                      </div>
-                 </div>
-            </div>
-            <div class="qun">
-                <label class="label">群组主题</label>
-                <textarea name="" id="" cols="30" rows="10" class="text"></textarea>
-            </div>
-            <div class="ke">
-                <label class="labels">可见范围</label>
-                <select name="" id="" class="text">
-                    <option value="">公开：企业所有成员都能看到此群组</option>
-                    <option value="">私有：只有加入的成员才能看到此群组</option>
-                </select>
-            </div>
-            <div class="cheng">
-                <label for="">群组成员</label>
-                <ul>
-                    <li>
-                        <span class="c_s">M</span>
-                    </li>
-                    <li></li>
-                </ul>
-            </div>
-            <div class="sure">
-                <button class="btn" @click="clo()">确定</button>
-                <a href="javascript:;">取消</a>
-            </div>
-        </div> -->
-
     </div>
 </template>
 
@@ -84,75 +36,21 @@ export default {
                 }
             ],
             result:[],
-            // isShow:true,
-            // item:[
-            //     {
-            //         color:"one"
-            //     },
-            //     {
-            //         color:"two"
-            //     },
-            //     {
-            //         color:"three"
-            //     },
-            //     {
-            //         color:"red"
-            //     },
-            //     {
-            //         color:"orange"
-            //     },
-            //     {
-            //         color:"yellow"
-            //     },
-            //     {
-            //         color:"green"
-            //     },
-            //     {
-            //         color:"teal"
-            //     },
-            //     {
-            //         color:"cyan"
-            //     },
-            //     {
-            //         color:"secondary"
-            //     },
-            //     {
-            //         color:"success"
-            //     },
-            //     {
-            //         color:"danger"
-            //     },
-            //     {
-            //         color:"a"
-            //     },
-            //     {
-            //         color:"b"
-            //     },
-            //     {
-            //         color:"c"
-            //     },
-            //     {
-            //         color:"d"
-            //     },   
-            //     {
-            //         color:"e"
-            //     }, 
-            // ],
-
         }
-    },
-    // created:{
-    //     get();
-    // },  
-    methods:{
-        // clo(){
-        //     this.isShow = false;
-        // }
     }
 }
 </script>
 
-<style lang='scss' scoped>
+<style scoped>
+    ul li{
+        list-style:none;
+    }
+    a{
+        text-decoration: none;
+    }
+    em,i{
+        font-style:normal;
+    }
     .ad_right{
         position: absolute;
         width: 100%;
@@ -203,7 +101,4 @@ export default {
         top: 75px;
         height: 100%;
     }
-
-    // 
-
 </style>
