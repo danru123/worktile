@@ -78,7 +78,6 @@
 
 <script>
 import  Vue from 'vue'
-import $ from 'jquery'
 export default {
     data(){
         return {
@@ -210,6 +209,15 @@ export default {
 </script>
 
 <style scoped>
+    ul li{
+        list-style:none;
+    }
+    a{
+        text-decoration: none;
+    }
+    em,i{
+        font-style:normal;
+    }
     .new{
         background: #fbfbfb;
         position: relative;
@@ -529,7 +537,6 @@ export default {
         box-shadow: 0 0 1.5rem rgba(0,0,0,.5);
         border: 0 solid rgba(0,0,0,.2);
         border-radius: .3rem;
-        /* display: none; */
     }
     .tan_up{
         padding: 0 1.875rem;

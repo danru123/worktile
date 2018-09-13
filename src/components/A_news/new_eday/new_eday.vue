@@ -40,7 +40,16 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style scoped>
+    ul li{
+        list-style:none;
+    }
+    a{
+        text-decoration: none;
+    }
+    em,i{
+        font-style:normal;
+    }
     .ad_right{
         position: absolute;
         width: 100%;
@@ -51,32 +60,32 @@ export default {
         height: 86px;
         position: absolute;
         top: -12px;
-        span{
-            line-height: 50px;
-            font-size: 16px;
-            float: left;
-            color: #333;
-            padding-left: 15px;
-            img{
-                vertical-align: middle;
-                margin-right: 5px;
-            }
-        }
-        .new_nav {
-            padding:0 20px;
-            margin-top: 50px;
-            li{
-                float: left;
-                width: 100px;
-                height: 34px;
-                line-height: 30px;
-                text-align: center;
-                a{
-                    color: #333;
-                    font-size: 14px;
-                }
-            }
-        }
+    }
+    .adriver_top span{
+        line-height: 50px;
+        font-size: 16px;
+        float: left;
+        color: #333;
+        padding-left: 15px;
+    }
+    .adriver_top span img{
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+    .new_nav {
+        padding:0 20px;
+        margin-top: 50px;
+    }
+    .new_nav li{
+        float: left;
+        width: 100px;
+        height: 34px;
+        line-height: 30px;
+        text-align: center;
+    }
+    .new_nav li a{
+        color: #333;
+        font-size: 14px;
     }
     .new_nav li.cur{
         border-bottom: 3px solid #22d7bb;
