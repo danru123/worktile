@@ -20,6 +20,7 @@
 
 </template>
 <script>
+<<<<<<< HEAD
 export default {
   data() {
     return {
@@ -45,6 +46,37 @@ export default {
         {
           title: "通讯录",
           url: "/contact"
+=======
+    export default {
+        name: 'app',
+        data () {
+            return {
+                tabNav:[
+                    {
+                        title:'消息',
+                        url:'/news'
+                    },
+                    {
+                        title:'项目',
+                        url:'/missions'
+                    },
+                    {
+                        title:'日历',
+                        url:'/calendar'
+                    },
+                    {
+                        title:'网盘',
+                        url:'/driver'
+                    },
+                ],
+                tabNav1:[
+                     {
+                        title:'通讯录',
+                        url:'/contact/'
+                    }
+                ]
+            }
+>>>>>>> wdr
         }
       ]
     };
@@ -72,7 +104,7 @@ export default {
           line-height: 123px;
           text-align: center;
           }
-        img{
+       header img{
             width: 50px;
             height: 50px;
             border-radius: 12px;

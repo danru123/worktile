@@ -1,76 +1,121 @@
 <template>
     <div>
        <div class="main-body-side">
-        <span class="title ">通讯录</span>
-        <i class='iconfont  icon-woderenwu wtf'></i>
-        <div class='body-list'>
-            <div class='search-area'>
-                <input type="text" placeholder="搜索">    
+           <div style="overflow:hidden">
+               <span class="title ">通讯录</span>
+                <i class='iconfont  icon-chengyuan-tianjia wtf' @click='xian'></i>
+           </div>
+            <div class='body-list'>
+                <div class='search-area'>
+                    <input type="text" placeholder="搜索">    
+                </div>
+                <ul class="lc-tabs-group">
+                    <li class='iconfont  icon-chengyuan'></li>
+                    <li class="line"></li>
+                    <li class='iconfont  icon-xiashurenwu-'></li>
+                </ul>
+                <div class='ng-scope'>
+                    <!-- 群组列表 -->
+                    <div class='section-header'>
+                        <div class="title2" @click='show2()'>
+                            <i class='iconfont icon-right tran' :class='{"caret-down":select2}'></i>
+                            <a href="#" >群组</a>
+                        </div>
+                        <ul :style='{height:qzH}'>
+                            <li v-for='item of qzNav' :class="{cur:$route.name==item.title}">
+                                <span class='channel-icon'>
+                                    <i class='iconfont  icon-chengyuan'></i>
+                                </span>                   
+                                <router-link :to='item.url' class='name'>{{item.title}}</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 机器人列表 -->
+                    <div class='robot'>
+                        <div class="title2" @click='show()'>
+                            <i class='iconfont icon-right tran' :class='{"caret-down":select}'></i>
+                            <a href="#" >机器人</a>
+                        </div>
+                        <ul :style="{height:robotH}">
+                            <li v-for='item of tabNav' :class="{cur:$route.name==item.title}">
+                                <img class='channel-icon' :src='item.image'>            
+                                <!-- <span class="name">12</span> -->
+                                <router-link :to='item.url' class='name'>{{item.title}}</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 联系人列表 -->
+                    <div class="member">
+                        <div class="man" v-for="(item,i) of member">
+                            <div class="title2">
+                                <a href="#" >{{item.t}}</a>
+                            </div>
+                            <ul>
+                                <li @click='tab(i)' :class="{cur:i==num}" >
+                                    <span class='channel-icon'>
+                                        {{item.t}}
+                                    </span>                   
+                                    <span class="name" @click="routerGo('/contact/M')" >{{item.name}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                   </div>
+                </div>                     
+            </div> 
+            </div> 
+            <div class="cover" v-show='isShow'>
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span>
+                                添加成员
+                            </span>
+                            <a href="#" class="modal-close" @click="xian">
+                                X
+                            </a>
+                        </div>
+                        <div class="cnt">
+                            <form action="">
+                                <p class="form-group" v-for='item of form'>
+                                    <label for="">
+                                        {{item.name}}
+                                    </label>
+                                    <input type="text" :placeholder="item.pla" :class="item.ref">
+                                </p>
+                            </form>
+                            <p>
+                                <button class="btn" @click='submit'>
+                                    添加成员
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <ul class="lc-tabs-group">
-                <li class='iconfont  icon-qunzu'></li>
-                <li class="line"></li>
-                <li class='iconfont  icon-xiashurenwu-'></li>
-            </ul>
-            <div class='ng-scope'>
-                <!-- 群组列表 -->
-                <div class='section-header'>
-                    <div class="title2">
-                        <i class='iconfont icon-right tran'></i>
-                        <a href="#" >群组</a>
-                    </div>
-                    <ul>
-                        <li>
-                            <span class='channel-icon'>
-                                <i class='iconfont  icon-qunzu'></i>
-                            </span>                   
-                            <span class="name">12</span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- 机器人列表 -->
-                <div class='robot'>
-                    <div class="title2" @click='show()'>
-                        <i class='iconfont icon-right tran' :class='{"caret-down":select}'></i>
-                        <a href="#" >机器人</a>
-                    </div>
-                    <ul :style="{height:robotH}">
-                        <li v-for='item of tabNav' :class="{cur:$route.name==item.title}">
-                            <img class='channel-icon' :src='item.image'>
-                                             
-                            <!-- <span class="name">12</span> -->
-                            <router-link :to='item.url' class='name'>{{item.title}}</router-link>
-                        </li>
-                    </ul>
-                </div>
-                <!-- 联系人列表 -->
-                <div class="man">
-                    <div class="title2">
-                        <a href="#" >M</a>
-                    </div>
-                    <ul>
-                        <li  :class="{cur:$route.name=='m'}">
-                            <span class='channel-icon'>
-                                M
-                            </span>                   
-                            <span class="name" @click="routerGo('./M')" >M</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>                     
-        </div> 
-        </div> 
-        <router-view></router-view>
+            <router-view></router-view>
+        </div>
     </div>
     
 </template>
 
 <script>
+   import $ from 'jquery'
     export default {
         data(){
             return {
                 header:[
                     "群组"
+                ],
+                num:0,
+                qzNav:[
+                    {
+                        title:123,
+                        url:'/contact/channels/123'
+                    },
+                    {
+                        title:'四组',
+                        url:'/contact/channels/forth'
+                    }
                 ],
                 tabNav:[
                     {
@@ -80,23 +125,56 @@
                     },
                     {
                         title:'网盘助手',
-                        url:"./wp",
+                        url:"/contact/wp",
                         image:'/dist/drive_160x160.png?da029d718fc8bb82fd3b7c60ad9b2b69'
                     },
                     {
                         title:'项目助手',
-                        url:"./xm",
+                        url:"/contact/xm",
                         image:'/dist/mission_160x160.png?eedd13600ae7e21deec50f47de4531bb'
                     },
                     {
                         title:'小特机器人',
-                        url:"./xt",
+                        url:"/contact/xt",
                         image:'/dist/381df779-62e6-49de-8792-620b94a5582d_160x160.png?daebac22e7d7fab74ca6eb300d60f05a'
                     }
                 ],
                  isShow:false,
                  robotH:0,
-                 select:false
+                 select:false,
+                 qzH:0,
+                 select2:false,
+                 form:[
+                     {
+                         name:"姓名",
+                         ref:'name',
+                         pla:"请输入对方真实姓名"
+                     },
+                     {
+                        name:"登录用户名",
+                        ref:"user",
+                         pla:"请输入对方用户名，如Lily"
+                     },
+                     {
+                          name:"邮箱或者手机号",
+                          ref:"phone",
+                         pla:"输入邮箱地址或者手机号"
+                     },
+                     {
+                          name:"默认密码",
+                          ref:'mima',
+                         pla:"输入默认密码"
+                     }
+                 ]
+            }
+        },
+        created() {
+			// 发送默认 GETALL
+			this.$store.dispatch("GETALL")
+		},
+        computed: {
+            member(){
+                return this.$store.state.member;
             }
         },
         methods:{
@@ -111,6 +189,50 @@
                 }else{
                     this.robotH=0;
                 }
+            },
+            show2(){
+                this.select2=!this.select2;
+                if(this.qzH==0){
+                    this.qzH=this.qzNav.length*50+'px'
+                }else{
+                    this.qzH=0;
+                }
+            },
+            xian(){
+                this.isShow=!this.isShow;
+            },
+            tab(i){
+                this.num=i;
+            },
+            // submit(){
+            //     var name=$('form .name').val();
+            //     this.$router.options.routes[4].children.push({//插入路由
+            //         name:name,
+            //         path: `/contact/menuItem-${this.menuItemLength + 1}`,
+            //         component: resolve => require(['../E_contact/M/m.vue'], resolve)//将组件用require引进来
+            //     });
+            //     //  this.$store.commit('submit', routes);
+            //     this.$router.addRoutes(this.$router.options.routes);//调用
+            // }
+            submit(){
+                this.isShow=!this.isShow;
+                var name=$('form .name').val();
+                console.log(name);
+                var str = "741852qwertyuioplkjhgfdszxcvbnm0963";
+                var id = '';
+                var t=name.substr(0,1).toUpperCase();
+                console.log(t);
+				for(var i = 0; i < 8; i++) {
+					//~~ 相当于parseInt
+					id+= str[~~(Math.random() * str.length)]
+				}
+				// 发送add 新增命令
+				this.$store.dispatch("ADD",{
+					"name":name,
+                    "id": id,
+                    "t":t
+                });
+                name='';
             }
         }
     }
@@ -140,6 +262,7 @@
         float: right;
         margin: 17px 20px;
         color: #ccc;
+        cursor: pointer;
     }
     .wtf:hover{
         color: #22d7bb!important;
@@ -214,10 +337,10 @@
         padding-bottom: 5px;
          border-bottom: solid 1px #eee;
     }
-    .section-header ul ,.robot ul,.man ul{
+    .section-header ul,.robot ul,.man ul{
         list-style: none;
         overflow: hidden;
-        transition: all .4s;
+        transition:  .4s;
     }
     .section-header ul li,.robot ul li,.man ul li{
         margin-bottom: 2px;
@@ -239,6 +362,7 @@
         font-size: 14px;
         width: 85%;
         display: inline-block;
+        vertical-align: middle;
     }
     .channel-icon{
         width: 24px;
@@ -263,5 +387,113 @@
     .caret-down{
         -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
+    }
+    .cover{
+        width: 100%;
+        height: 100%;
+        background-color:rgba(0,0,0,.3);
+        position: fixed;
+        top:0;
+        left:0;
+        z-index: 1;
+    }
+    .modal-dialog {
+        max-width: 660px;
+        margin: 3.75rem auto;
+        width: auto;
+    }
+    .modal-content{
+        box-shadow: 0 0 1.5rem rgba(0,0,0,.5);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 0 solid rgba(0,0,0,.2);
+        border-radius: .3rem;
+        height: 390px;
+        z-index: 99;
+    }
+    .modal-header{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #eee;
+        border-top-left-radius: .3rem;
+        border-top-right-radius: .3rem;
+        padding: 0 1.875rem;
+        min-height: 1.5;
+        align-items: center;
+        height: 50px;
+    }
+    .modal-close{
+        color: #ddd;
+    line-height: 50px;
+    }
+    .cnt{
+        padding: 30px;
+        box-sizing: border-box;
+    }
+    .form-group{
+        margin-bottom: 1rem;
+    }
+    .form-group label{
+        width: 22%;
+        color: #888;
+        font-size: 14px;
+        font-weight: 400;
+        display: inline-block;
+        text-align: right;
+        margin-right: 10px;
+    }
+    .form-group label::before{
+        content: '*';
+        margin-right: 3px;
+        position: relative;
+        top: 3px;
+        color: #ff5b57;
+        
+    }
+    .form-group input{
+        width: 75%;
+        line-height: 1.5;
+        color: #333;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #eee;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        outline: none;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .form-group input:hover,.form-group input:focus{
+        border-color: #22d7bb;
+    }
+    .btn{
+        color: #fff;
+        background-color: #22d7bb;
+        border-color: #22d7bb;
+        display: inline-block;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .469rem 26px;
+        font-size: .875rem;
+        line-height: 1.5;
+        min-width: 106px;
+        border-radius: 1.25rem;
+        outline: none;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        margin-left: 145px;
+    }
+    .btn:hover {
+        box-shadow: 0 2px 5px 1px rgba(34,215,187,.6);
+    }
+    .member{
+        height: auto;
+        overflow-y: auto;
+        box-sizing: border-box;
     }
 </style>
