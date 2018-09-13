@@ -170,6 +170,175 @@
     .dorpdown li:hover {
         box-shadow: 0 0 8px 2px #eee; 
     }
+    .modalDiaLog{
+        position:fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height:100%;
+        background-color: rgba(0,0,0,.1);
+        z-index:2222;
+    }
+    .modi{
+        width:660px;
+        height:410px;
+        background-color: #fff;
+        border: 0 solid rgba(0,0,0,.2);
+        border-radius: .3rem;
+        box-shadow: 0 0 1.5rem rgba(0,0,0,.4);
+        outline: 0;
+        margin:10% auto;
+    }
+    .modal-header {
+        padding: 0 1.875rem;
+        min-height: 1.5;
+        align-items: center;
+        height: 50px;
+        border-bottom: 1px solid #eee;
+    }
+    .modal-header h3 {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    .modal-close{
+        color: #ddd;
+        line-height: 50px;
+        float:right;
+        font-size: 1.5rem;
+        text-decoration: none;
+    }
+    .modal-body{
+        padding-left: 30px;
+        padding-right: 30px;
+        height: 360px;
+        padding: 20px 0;
+    }
+    .group{
+        width:600px;
+        height:60px;
+    }
+    .wenjian{
+        display: block;
+        width: 92%;
+        height:30px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #eee;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        padding: .469rem .875rem;
+        font-size: .875rem;
+    }
+    .color-labels{
+        width: 95%;
+        height:25px;
+        margin-bottom:20px;
+    }
+    .row-fill{
+        width: 92%;
+        height:38px;
+    }
+    .text-right{
+        color: #888;
+        font-size: 14px;
+        font-weight: 400;
+        float:left;
+    }
+     .text-fl{
+        color: #888;
+        font-size: 14px;
+     }
+    select{
+        outline:none;
+        width: 485px;
+        height:38px;
+         float:right;
+         border: 1px solid #eee;
+        border-radius: .25rem;
+    }
+    .btn-pair{
+        margin-top: 20px;
+        float: left;
+        margin-left: 30px;
+    }
+    .btn{
+        width: 106px;
+        height:38px;
+        color: #fff;
+        text-align: center;
+        border-radius: 1.25rem;
+        outline:none;
+        border:1px solid transparent;
+    }
+    .btn-primary{
+        background-color: #22d7bb;
+        border-color: #22d7bb;
+    }
+    .btn-primary:hover {
+        box-shadow: 0 2px 5px 1px rgba(34,215,187,.6);
+    }
+    .btn-link{
+         background:none;
+         color:#ccc;
+    }
+    .btn-link:hover {
+        color: #22d7bb;
+        text-decoration: none;
+    }
+    .color1{
+        background: #22d7bb;
+    }
+    .color2{
+        background: #18bfa4;
+    }
+    .color3{
+        background: #2cccda;
+    }
+    .color4{
+        background: #2dbcff;
+    }
+    .color5{
+        background: #4e8af9;
+    }
+    .color6{
+        background: #7076fa;
+    }
+    .color7{
+        background: #9473fd;
+    }
+    .color8{
+        background: #c472ee;
+    }
+    .color9{
+        background: #ef7ede;
+    }
+    .color10{
+        background: #f969aa;
+    }
+    .color11{
+        background: #fc587b;
+    }
+    .color12{
+        background: #fa5a55;
+    }
+    .color13{
+        background: #ff7747;
+    }
+    .color14{
+        background: #ffa415;
+    }
+    .color15{
+        background: #ffd234;
+    }
+    .color-labels li{
+        margin: 0 6px;
+        width: 25px;
+        height: 25px;
+        float:left;
+         border-radius: 50px;
+    }
 </style>
 
 <template>
@@ -183,19 +352,43 @@
                 </div>
             </div>
             <div class="right_hsc">
-                <button class="right_hbtn">+ 新建</button>
-                <ul class="dorpdown">
-                    <li>
-                        <a href="javascript:;">
-                            <span class="ng-binding">新建文件夹</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="javascript:;">
-                            <span class="ng-binding">新建在线文档</span>
-                        </a>
-                    </li>
-                </ul>
+                <button class="right_hbtn" @click.stop="toggled()">+ 新建</button>
+                
+                <div class="modalDiaLog" v-show="shows">
+                        <div class="modi">
+                            <div class="modal-header">
+                                <a href="javascript:;" class="modal-close"  @click.stop="toggled()">x</a>
+                                <h3 class="modal-title" >新建文件夹</h3>
+                                <div class="modal-body">
+                                    <div class="group">
+                                        <input type="text" class="wenjian" placeholder="输入文件夹的名称">
+                                    </div>
+                                    <ul class="color-labels">
+                                         <li class="color-labels-li" v-for="item of colors" :class="item.name"></li>
+                                    </ul>
+                                    <div class="row-fill">
+                                        <label class="text-right">所在位置</label>
+                                        <select>
+                                            <option>企业网盘</option>
+                                            <option>个人网盘</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="row-fill">
+                                        <label class="text-fl">可见范围</label>
+                                        <select>
+                                            <option>公开：企业所有成员都可以看见此文件夹</option>
+                                            <option>私有：只有加入的成员才能看见此文件夹</option>
+                                        </select>
+                                    </div>
+                                    <div class="btn-pair">
+                                        <button class="btn btn-primary" @click.stop="toggled()">确定</button>
+                                        <button class="btn btn-link" @click.stop="toggled()">取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="upload_btn">
                     <i class="iconfont icon3 icon-uploading"></i>
                     上传文件
@@ -249,7 +442,64 @@
 
 <script>
 export default {
+    data(){
+        return {
+            shows:false,
+            colors:[
+                {
+                    name:'color1'
+                },
+                 {
+                    name:'color2'
+                },
+                 {
+                    name:'color3'
+                },
+                 {
+                    name:'color4'
+                },
+                 {
+                    name:'color5'
+                },
+                 {
+                    name:'color6'
+                },
+                 {
+                    name:'color7'
+                },
+                 {
+                    name:'color8'
+                },
+                 {
+                    name:'color9'
+                },
+                 {
+                    name:'color10'
+                },
+                 {
+                    name:'color11'
+                },
+                 {
+                    name:'color12'
+                },
+                {
+                    name:'color13'
+                },
+                {
+                    name:'color14'
+                },
+                {
+                    name:'color15'
+                },
 
+            ],
+        }
+    },
+    methods:{
+        toggled(){
+            this.shows = !this.shows;
+        }
+    }
 }
 </script>
 

@@ -170,6 +170,52 @@
     .dorpdown li:hover {
         box-shadow: 0 0 8px 2px #eee; 
     }
+    .color1{
+        background: #22d7bb;
+    }
+    .color2{
+        background: #18bfa4;
+    }
+    .color3{
+        background: #2cccda;
+    }
+    .color4{
+        background: #2dbcff;
+    }
+    .color5{
+        background: #4e8af9;
+    }
+    .color6{
+        background: #7076fa;
+    }
+    .color7{
+        background: #9473fd;
+    }
+    .color8{
+        background: #c472ee;
+    }
+    .color9{
+        background: #ef7ede;
+    }
+    .color10{
+        background: #f969aa;
+    }
+    .color11{
+        background: #fc587b;
+    }
+    .color12{
+        background: #fa5a55;
+    }
+    .color13{
+        background: #ff7747;
+    }
+    .color14{
+        background: #ffa415;
+    }
+    .color15{
+        background: #ffd234;
+    }
+
 </style>
 
 <template>
@@ -184,18 +230,7 @@
             </div>
             <div class="right_hsc">
                 <button class="right_hbtn">+ 新建</button>
-                <ul class="dorpdown">
-                    <li>
-                        <a href="javascript:;">
-                            <span class="ng-binding">新建文件夹</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="javascript:;">
-                            <span class="ng-binding">新建在线文档</span>
-                        </a>
-                    </li>
-                </ul>
+               
                 <div class="upload_btn">
                     <i class="iconfont icon3 icon-uploading"></i>
                     上传文件
