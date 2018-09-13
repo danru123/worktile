@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <h1>我是网盘</h1>
-    </div>
+   <h1>456</h1>
 </template>
 
 <script>
     export default {
-        name: "dbank"
+        
     }
 </script>
 

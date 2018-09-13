@@ -1,11 +1,21 @@
 <template>
+<<<<<<< HEAD
   <div style="height: 100%;width:100%">
+=======
+  <div style="height: 100%;">
+>>>>>>> lfm
     <header>
       <div class="name">
           <img src="./assets/name.png" alt="">
       </div>
       <ul>
+<<<<<<< HEAD
         <li v-for="item of tabNav">
+=======
+        <!-- 样式要在点击的标题与路由中的标题匹配时展示 -->
+        <li v-for="item of tabNav">
+          <!-- 跳转 -->
+>>>>>>> lfm
           <router-link :to='item.url'>{{item.title}}</router-link>
         </li>
       </ul>
@@ -27,6 +37,7 @@
                 tabNav:[
                     {
                         title:'消息',
+<<<<<<< HEAD
                         url:'/news'
                     },
                     {
@@ -40,12 +51,31 @@
                     {
                         title:'网盘',
                         url:'/driver'
+=======
+                        url:'./news'
+                    },
+                    {
+                        title:'项目',
+                        url:'./missions'
+                    },
+                    {
+                        title:'日历',
+                        url:'./calendar'
+                    },
+                    {
+                        title:'网盘',
+                        url:'./driver'
+>>>>>>> lfm
                     },
                 ],
                 tabNav1:[
                      {
                         title:'通讯录',
+<<<<<<< HEAD
                         url:'/contact/'
+=======
+                        url:'./contact'
+>>>>>>> lfm
                     }
                 ]
             }
@@ -54,7 +84,11 @@
 </script>
 
 <style>
+<<<<<<< HEAD
      #app{
+=======
+    #app{
+>>>>>>> lfm
             width: 100%;
             height: 100%;
         }
@@ -74,7 +108,11 @@
           text-align: center;
           
           }
+<<<<<<< HEAD
        header img{
+=======
+        header img{
+>>>>>>> lfm
             width: 50px;
             height: 50px;
             border-radius: 12px;
@@ -129,4 +167,8 @@
       header  ul li a:hover{
             background: #18bfa4;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> lfm
 </style>

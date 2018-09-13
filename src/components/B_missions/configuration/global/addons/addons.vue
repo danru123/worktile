@@ -1,12 +1,12 @@
 <template>
     <div>
-        <h1>我是网盘</h1>
+        <h1>我是addons</h1>
     </div>
 </template>
 
 <script>
     export default {
-        name: "dbank"
+        
     }
 </script>
 

@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="big-Box">
         <div class="left">
             <div class="title">
@@ -283,4 +284,19 @@ div.big-Box{
     overflow: hidden;
   }
 }
+=======
+    <div>
+        <h1>我是日历</h1>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "calendar"
+    }
+</script>
+
+<style scoped>
+
+>>>>>>> lfm
 </style>
