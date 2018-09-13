@@ -532,12 +532,12 @@ const store = new Vuex.Store({
     actions:{
         async GETALL(context,payload){
             //请求数据
-            var data=await fetch('../mapList/').then(res=>res.json());
+            var data=await fetch('../mapItem/').then(res=>res.json());
             context.commit('GETALL',data);
         },
         async ADD({commit},payload){
             //上传数据
-            var data=await fetch('../mapList/',{
+            var data=await fetch('../mapItem/',{
                 "method":"POST",
                 "headers":{
                     "Content-Type":"application/json"

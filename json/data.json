@@ -1,24 +1,20 @@
 {
-  "mapList": [
+  "mapList": [],
+  "mapItem": [
     {
       "name": "mm",
       "id": "yj5xm53m",
       "t": "M"
     },
     {
-      "name": "hah",
-      "id": "fnnj3986",
+      "name": "hahah",
+      "id": "wqtqpis0",
       "t": "H"
     },
     {
       "name": "heeee",
       "id": "kqqji2qt",
       "t": "H"
-    }
-  ],
-  "mapItem": [
-    {
-      "age": 23
     }
   ]
 }
