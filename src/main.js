@@ -118,22 +118,27 @@ const store = new Vuex.Store({
 			todos:[]
 		},
 		 mutations:{
-		 	GETALL(state,payload){
+		 	 DEL1(state,payload){
+	            state.todos = state.todos.filter(item => {
+	                return item.id != payload.id;
+	            })
+	        },
+		 	GETALL1(state,payload){
 	            state.todos = payload;
 	        },
-	         ADD(state,payload){
+	         ADD1(state,payload){
 	            state.todos.push(payload);
 	        },
 
 		 },
 		 actions:{
-		 	 async GETALL(context,payload){
+		 	 async GETALL1(context,payload){
 	            // 请求数据
 	            var data = await fetch('/mapList/').then(res=>res.json());
 	            console.log(data);
-	            context.commit('GETALL',data);
+	            context.commit('GETALL1',data);
 	        },
-	        async ADD({commit},payload){
+	        async ADD1({commit},payload){
             // 上传数据
             var data = await fetch('/mapList/',{
                 "method":"POST",
@@ -142,7 +147,14 @@ const store = new Vuex.Store({
                 },
                 "body":JSON.stringify(payload)
             }).then(res => res.json());
-            commit ('ADD',data);
+            commit ('ADD1',data);
+        },
+         async DEL1({commit},payload){
+            // 发送delete请求到json-server服务器，自动帮我们删除这条数据，操作data.json 文件
+            var data = await fetch('/mapList/'+payload.id,{
+                "method":"DELETE"
+            }).then(res => res.json());
+            commit("DEL",payload)
         },
 		 }
 });

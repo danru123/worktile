@@ -371,6 +371,12 @@
         position: relative;
         left: -687px;
     }
+    .del1{
+        display:none;
+    }
+    .mian_con:hover .del1{
+        display:block;
+    }
 </style>
 
 <template>
@@ -472,6 +478,9 @@
                 <div class="file_updated">
                     <span class="ng_scope">9月11日 15:55</span>
                 </div>
+                <div class="del1">
+                     <i class="iconfont icon-shanchu" @click="del(item.id)"></i>
+                </div>
             </li>
             <br>
         </div>
@@ -552,7 +561,7 @@ export default {
         }
     },
     created() {
-            this.$store.dispatch("GETALL")
+            this.$store.dispatch("GETALL1")
         },
         computed: {
             todos() {
@@ -566,6 +575,12 @@ export default {
          handleChange(file, fileList) {
             this.fileList3 = fileList.slice(-3);
           },
+          del(id){
+                // 只需要一个id就行了
+                this.$store.dispatch("DEL1",{
+                    id : id
+                })
+            },
       add() {
                 // 如果为空 就 return 掉 什么都不做    
                 if(this.txt == '') return
@@ -577,9 +592,10 @@ export default {
                     id+= str[~~(Math.random() * str.length)]
                 }
                 // 发送add 新增命令
-                this.$store.dispatch("ADD",{
+                this.$store.dispatch("ADD1",{
                     title:this.txt,
                     id : id,
+                    time:new Date().getTime()
                     
                 });
                 // 点击后 清空 文本框
