@@ -51,7 +51,7 @@
                                 <a href="#" >{{item.t}}</a>
                             </div>
                             <ul>
-                                <li @click='tab(i)' :class="{cur:i==num}" >
+                                <li @click='tab(i)' :class="{cur:i==num}" v-for='item of shai(item.t)'>
                                     <span class='channel-icon'>
                                         {{item.t}}
                                     </span>                   
@@ -178,6 +178,15 @@
             }
         },
         methods:{
+            shai(value){
+                var arr=[];
+                this.$store.state.member.forEach(function(item,index){
+                    if(item.t==value){
+                        arr.push(item);
+                    }
+                })
+                return arr;
+            },
             routerGo(url){
                 //路由跳转
                 this.$router.push({path:url})
@@ -222,7 +231,7 @@
                     "id": id,
                     "t":t
                 });
-                name='';
+                $('form input').val('');
             }
         }
     }
@@ -238,6 +247,30 @@
         border-right: 1px solid #ddd;
         height: 100%;
         float: left;
+    }
+    .body-list{
+        height: calc(100% - 52px);
+    }
+    .ng-scope{
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 87%;
+
+    }
+    /*滚动条样式*/
+    .ng-scope::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 5px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 5px;
+    }
+    .ng-scope::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: rgba(0, 0, 0, 0.048);
+    }
+    .ng-scope::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        border-radius: 0;
+        background: rgba(0,0,0,0.1);
     }
     a{
         text-decoration: none;

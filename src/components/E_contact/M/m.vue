@@ -53,6 +53,25 @@
                         </span>
                     </div>
                 </div>
+                <div class="panel ng-isolate-scope">
+                    <div class="panel-heading">
+                        <span class="panel-title">
+                            详细资料
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div class='profile-detail-list'>
+                            <div class="profile-row" v-for='item of profile'>
+                                <div class="title">
+                                    {{item.type}}
+                                </div>
+                                <div class="content">
+                                    {{item.con}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -66,6 +85,24 @@ export default {
                 "技术总监",
                 "暂无",
                 "17600978244"
+            ],
+            profile:[
+                {
+                    "type":'手机',
+                    "con":'17600978244'
+                },
+                {
+                    "type":'邮箱',
+                    "con":'暂无'
+                },
+                {
+                    "type":'部门',
+                    "con":'暂无'
+                },
+                {
+                    "type":'职位',
+                    "con":'技术总监'
+                }
             ]
         }
     }
@@ -248,5 +285,35 @@ export default {
         color: #333;
         font-size: 14px;
         border-left: solid 3px #22d7bb;
+    }
+    .panel .panel-body {
+        padding: 15px 20px;
+    }
+    .panel .profile-row{
+        margin-bottom: 20px;
+        font-size: 14px;
+        display: -webkit-box;
+        display: flex;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+    .profile-detail-list .profile-row .title {
+        margin-right: 20px;
+        width: 60px;
+        text-align: right;
+        color: #aaa;
+    }
+    .profile-row .content {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 0px;
+        flex: 1 1 0;
+        -webkit-flex: 1 1 0;
+        color: #666;
+        text-align: left;
+        word-break: break-all;
     }
 </style>
