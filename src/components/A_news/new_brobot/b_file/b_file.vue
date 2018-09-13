@@ -2,7 +2,11 @@
     <div class="new_detail">
         <div class="new_deta_main">
             <div class="new_deta_fetch">
-                <div>上传文件</div>
+                <div class="new_da">
+                    <input  type="file" accept="image/*" ref='input' class="input" >
+                    <button @click="publish">上传文件</button>
+                    <img src="" alt="" ref="img" class="img">
+                </div>
             </div>
             <table class="new_de_con">
                 <thead>
@@ -13,45 +17,72 @@
                         <th>上传时间</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td v-show='isShow==false'>312kb</td>
+                        <td v-show='isShow==false'>M</td>
+                        <td v-for="item of vList" style="position: relative;left:-22%">{{item.data}}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
-        <!-- <el-upload
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :before-remove="beforeRemove"
-            multiple
-            :limit="3"
-            :on-exceed="handleExceed"
-            :file-list="fileList">
-            <el-button size="small" type="primary">点击上传</el-button>
-            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-        </el-upload> -->
     </div>
 </template>
 
 <script>
 export default {
-//     data() {
-//       return {
-//         fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
-//       };
-//     },
-//     methods: {
-//       handleRemove(file, fileList) {
-//         console.log(file, fileList);
-//       },
-//       handlePreview(file) {
-//         console.log(file);
-//       },
-//       handleExceed(files, fileList) {
-//         this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-//       },
-//       beforeRemove(file, fileList) {
-//         return this.$confirm(`确定移除 ${ file.name }？`);
-//       }
-//     }
+    data(){
+        return {
+            vList:[
+                {
+                    data:''
+                }
+            ],
+            isShow:true
+        }
+    },
+    methods:{
+        publish(){
+            this.isShow = !this.isShow;
+            let ip = this.$refs.input;
+            let formdata = new FormData()
+            formdata.append("file", ip.files[0]);
+            //上传的照片如果想要在页面中显示
+            //html中创建一个img标签 ref设置为img
+            let img = this.$refs.img
+            const reader = new FileReader()
+            reader.readAsDataURL(ip.files[0])
+            reader.onload=function(e){
+                 img.src=e.target.result
+            }
+            var hours = new Date().getHours(); 
+            var minutes = new Date().getMinutes(); 
+            var seconds = new Date().getSeconds(); 
+            function zero(n){
+                return n.toString().length > 1 ? n.toString() : '0' + n.toString();
+            }
+            var str = hours+':'+zero(minutes)+':'+zero(seconds);
+            console.log(str);
+            this.vList.push({
+                data:str
+            })
+            this.$axios
+                .post("/kmd-web/adm/updateAd", formdata, {
+                      headers: { "Content-Type": "multipart/form-data" }
+                   })
+                .then(res => {
+                    if (res.data.statusCode == 200) {
+                        alert("修改成功！");
+                        history.go(-1);
+                    } else {
+                        alert("修改失败！");
+                    }
+                });
+           
+        }
+    }
+
   }
 </script>
 
@@ -64,6 +95,19 @@ export default {
     }
     em,i{
         font-style: normal;
+    }
+    .new_de_con tr td{
+        padding:0px 15px;
+        text-align: center; 
+        height: 100px;
+        line-height: 100px;
+    }
+    .img{
+        width: 100%;
+        height: 300%;
+        position: relative;
+        left: -591%!important;
+        top:62px!important;
     }
     .new_detail{
         width: 100%;
@@ -108,8 +152,8 @@ export default {
     .new_deta_fetch div{
         float: right;
         margin-right: 20px;
-        width: 120px;
-        height: 28px;
+        width: 159px;
+        height: 40px;
         border-radius: 18px;
         background-color: #22d7bb;
         border-color: #22d7bb;
@@ -118,6 +162,19 @@ export default {
         text-align: center;
         cursor: pointer;
         margin-top: 10px;
+    }
+    .new_deta_fetch div input{
+        height: 35px;
+        outline: none;
+        position: relative;
+        top: 6px;
+        left: 15px;
+    }
+    .new_deta_fetch div button{
+        position: relative;
+        top: -32px;
+        left: 17px;
+        margin-left: 44px;
     }
     .new_deta_fetch img{
         display:inline-block;

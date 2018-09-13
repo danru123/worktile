@@ -2,10 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-// import ElementUI from 'element-ui'
-// import '../node_modules/element-ui/lib/theme-chalk/index.css'
 
-// Vue.use(ElementUI)
 
 Vue.use(Vuex);
 
