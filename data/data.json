@@ -1,0 +1,42 @@
+{
+  "mapList": [
+    {
+      "title": "公司制度",
+      "id": "gy1iv6jo"
+    },
+    {
+      "title": "资料共享",
+      "id": "gy1iv6jo"
+    },
+    {
+      "title": "缺陷管理",
+      "id": "gy1iv6jo"
+    }
+  ],
+  "mapItem": [
+    {
+      "name": "mm",
+      "id": "yj5xm53m",
+      "t": "M",
+      "col": "rgb(239, 126, 112)"
+    },
+    {
+      "name": "hhhhhh",
+      "id": "pkwnqhtf",
+      "t": "H",
+      "col": "rgb(220,216,130)"
+    },
+    {
+      "name": "allal",
+      "id": "4stc48mu",
+      "t": "A",
+      "col": "rgb(137,70,72)"
+    },
+    {
+      "name": "hhhh",
+      "id": "mm375xtj",
+      "t": "H",
+      "col": "rgb(210,191,141)"
+    }
+  ]
+}
