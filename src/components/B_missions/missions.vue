@@ -227,6 +227,9 @@
 	    position: relative;
 	    transition: all 0.5s ease;
 	}
+	.C-l .body-list ul .lis:hover{
+		box-shadow: 0 0 8px 2px #eee;
+	}
 	.C-l .body-list ul li:hover{
 		box-shadow: 0 0 8px 2px #eee;
 	}

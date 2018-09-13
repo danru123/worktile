@@ -1,11 +1,13 @@
 <template>
-  <div style="height: 100%;width:100%">
+  <div style="height: 100%;">
     <header>
       <div class="name">
           <img src="./assets/name.png" alt="">
       </div>
       <ul>
+        <!-- 样式要在点击的标题与路由中的标题匹配时展示 -->
         <li v-for="item of tabNav">
+          <!-- 跳转 -->
           <router-link :to='item.url'>{{item.title}}</router-link>
         </li>
       </ul>
@@ -27,25 +29,25 @@
                 tabNav:[
                     {
                         title:'消息',
-                        url:'/news'
+                        url:'./news'
                     },
                     {
                         title:'项目',
-                        url:'/missions'
+                        url:'./missions'
                     },
                     {
                         title:'日历',
-                        url:'/calendar'
+                        url:'./calendar'
                     },
                     {
                         title:'网盘',
-                        url:'/driver'
+                        url:'./driver'
                     },
                 ],
                 tabNav1:[
                      {
                         title:'通讯录',
-                        url:'/contact/'
+                        url:'./contact'
                     }
                 ]
             }
@@ -54,7 +56,7 @@
 </script>
 
 <style>
-     #app{
+    #app{
             width: 100%;
             height: 100%;
         }
@@ -74,7 +76,7 @@
           text-align: center;
           
           }
-       header img{
+        header img{
             width: 50px;
             height: 50px;
             border-radius: 12px;
@@ -129,4 +131,5 @@
       header  ul li a:hover{
             background: #18bfa4;
         }
+
 </style>

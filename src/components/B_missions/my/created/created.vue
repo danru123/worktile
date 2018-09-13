@@ -80,5 +80,13 @@
     .t{
         position: absolute;
         top: 50px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        background: 0 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
     }
 </style>

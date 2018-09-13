@@ -13,7 +13,8 @@
             <i class='iconfont icon-hao'></i>
             新建模板
         </button>
-        
+        <div :class="{mask:isShow}"></div>
+        <div :class="{mask:isShows}"></div>
         <div class="pad">
             <table>
                 <thead>
@@ -58,7 +59,7 @@
                             </span>
                         </td>
                     </tr>
-                    <tr v-for="item of L">
+                    <tr v-for="(item,index) of L">
                         <td style="text-align:left">
                             <i class='iconfont' :class='item.m'></i>
                             {{item.n}}
@@ -125,7 +126,7 @@
             </div>
         </div>
 
-       <!--  <div class="bs" v-show='isShows'>
+        <div class="bs" v-show='isShows'>
             <div class="b-t">
                 <span>新建项目模板</span>
                 <a href="javascript:;" ref='x' @click='close'>x</a>
@@ -151,10 +152,10 @@
                         </li>
                     </ul>
                 </div>
-                <button class="t" @click='b'>确定</button>
+                <button class="t" @click='bs()'>确定</button>
                 <button class="f" @click='close'>取消</button>
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -223,7 +224,8 @@ export default {
             lei:'',
             bei:'',
             L:[],
-            items:''
+            items:'',
+            dI:0,
         }
     },
     methods:{
@@ -232,7 +234,8 @@ export default {
             this.items = item.i
         },
         close(){
-            this.isShow = !this.isShow
+            this.isShow = false;
+            this.isShows=false;
         },
         kai:function(){
             this.isShow = true;
@@ -247,14 +250,24 @@ export default {
             localStorage.setItem('L',JSON.stringify(this.L));
             this.isShow = !this.isShow
         },
+        bs(){
+            var a = {
+                n:this.name,
+                l:this.lei,
+                b:this.bei,
+                m:this.items
+            }
+            this.L.splice(this.dI,1,a);
+            localStorage.setItem('L',JSON.stringify(this.L));
+            this.isShows = false;
+        },
         del(index){
             this.L.splice(index,1);
             localStorage.setItem('L',JSON.stringify(this.L));
         },
         geng(index){
+            this.dI = index;
             this.isShows = true;
-            this.L.splice(index,1);
-            localStorage.setItem('L',JSON.stringify(this.L));
         }
     },
     created(){
@@ -269,6 +282,15 @@ export default {
 <style scoped>
     ul{
         list-style: none;
+    }
+    .mask{
+        width: 100%;
+        height: 100%;
+        background: #000;
+        position: fixed;
+        left: 0;
+        top: 0;
+        opacity: 0.2;
     }
     .module{
         overflow: hidden;
@@ -405,6 +427,7 @@ export default {
         margin: 0 auto;
         border: 1px solid rgba(0,0,0,.2);
         border-radius: .3rem;
+        margin-left: 5%;
     }
     .b-t{
         align-items: center;
@@ -496,7 +519,7 @@ export default {
         border-color: #22d7bb;
         outline: none;
         float: left;
-        margin-left:23%;
+        margin-left:35%;
     }
     .f{
         color: #aaa;
