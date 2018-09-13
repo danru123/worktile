@@ -1,8 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <div>
-        <h1>我是项目</h1>
-=======
     <div class="main-body">
        	<div class="wtLa">
        		<div class="C-l">
@@ -47,15 +43,11 @@
        			<router-view></router-view>
        		</div>
        	</div>
->>>>>>> lfm
     </div>
 </template>
 
 <script>
     export default {
-<<<<<<< HEAD
-        name: "items"
-=======
         data(){
         	return{
         		select:false,
@@ -107,14 +99,10 @@
 
         },
 
->>>>>>> lfm
     }
 </script>
 
 <style scoped>
-<<<<<<< HEAD
-
-=======
 	*{
 		box-sizing: border-box;
 	}
@@ -314,5 +302,4 @@
 		flex:1 1 0;
 		overflow:scroll;
 	}
->>>>>>> lfm
 </style>

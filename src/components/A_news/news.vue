@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
     <div class="new">
         <div class="new_left">
             <div class="new_top">
@@ -74,15 +73,10 @@
                 <a href="javascript:;">取消</a>
             </div>
         </div>
-=======
-    <div>
-        <h1>我是消息</h1>
->>>>>>> lfm
     </div>
 </template>
 
 <script>
-<<<<<<< HEAD
 import  Vue from 'vue'
 import $ from 'jquery'
 export default {
@@ -562,13 +556,3 @@ export default {
     }
 
 </style>
-=======
-    export default {
-        name: "news"
-    }
-</script>
-
-<style scoped>
-
-</style>
->>>>>>> lfm
