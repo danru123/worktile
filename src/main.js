@@ -511,7 +511,8 @@ const r = [
 //路由初始化
 const router = new VueRouter({
     // 这里的routes 建必须这么写
-   routes : r
+   routes : r,
+   mode:'history'
 });
 
 //配置vuex

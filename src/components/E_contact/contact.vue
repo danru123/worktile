@@ -1,6 +1,5 @@
 <template>
     <div>
-<<<<<<< HEAD
        <div class="main-body-side">
            <div style="overflow:hidden">
                <span class="title ">通讯录</span>
@@ -489,18 +488,4 @@
         overflow-y: auto;
         box-sizing: border-box;
     }
-=======
-        <h1>我是通讯录</h1>
-    </div>
-</template>
-
-<script>
-    export default {
-        name: "address"
-    }
-</script>
-
-<style scoped>
-
->>>>>>> cxl
 </style>
