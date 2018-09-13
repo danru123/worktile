@@ -274,7 +274,6 @@ div.tran:hover {
 }
 
 div.big-Box{
-  position: relative;
   div.mark{
     position: absolute;
     top: 0;
