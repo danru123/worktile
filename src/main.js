@@ -2,11 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+import ElementUI from 'element-ui';
 
 Vue.use(Vuex);
 
 Vue.use(VueRouter);
 
+Vue.use(ElementUI);
 // 使用路由管理几个子组件
 //引入子组件
 const News = require('./components/A_news/news.vue');
@@ -113,8 +115,36 @@ const router = new VueRouter({
 //配置vuex
 const store = new Vuex.Store({
 		state:{
-			count:1
-		}
+			todos:[]
+		},
+		 mutations:{
+		 	GETALL(state,payload){
+	            state.todos = payload;
+	        },
+	         ADD(state,payload){
+	            state.todos.push(payload);
+	        },
+
+		 },
+		 actions:{
+		 	 async GETALL(context,payload){
+	            // 请求数据
+	            var data = await fetch('/mapList/').then(res=>res.json());
+	            console.log(data);
+	            context.commit('GETALL',data);
+	        },
+	        async ADD({commit},payload){
+            // 上传数据
+            var data = await fetch('/mapList/',{
+                "method":"POST",
+                "headers":{
+                    "Content-Type":"application/json"
+                },
+                "body":JSON.stringify(payload)
+            }).then(res => res.json());
+            commit ('ADD',data);
+        },
+		 }
 });
 
 

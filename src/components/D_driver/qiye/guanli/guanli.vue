@@ -179,7 +179,9 @@
                 <div>
                     <i class="iconfont icon1 icon-wenjianjiabiheicon"></i>
                     企业网盘
-                    <i class="iconfont icon2 icon-jiantou"></i>
+                    <i class="iconfont icon2 icon-jiantou1"></i>
+                    缺陷管理
+                     <i class="iconfont icon2 icon-jiantou"></i>
                 </div>
             </div>
             <div class="right_hsc">
