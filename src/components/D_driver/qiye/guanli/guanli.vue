@@ -184,18 +184,7 @@
             </div>
             <div class="right_hsc">
                 <button class="right_hbtn">+ 新建</button>
-                <ul class="dorpdown">
-                    <li>
-                        <a href="javascript:;">
-                            <span class="ng-binding">新建文件夹</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="javascript:;">
-                            <span class="ng-binding">新建在线文档</span>
-                        </a>
-                    </li>
-                </ul>
+                
                 <div class="upload_btn">
                     <i class="iconfont icon3 icon-uploading"></i>
                     上传文件

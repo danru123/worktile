@@ -233,8 +233,8 @@
         margin-top: 13px;
     }
     .modis{
-        height: 456px;
-        margin-top:8%;
+        height: 500px;
+        margin-top:6%;
     }
     .modal-cy-left{
         position: relative;
@@ -249,7 +249,7 @@
         text-align: center;
         border-bottom: solid 1px #f3f3f3;
     }
-    li{
+    .modal-cy-ul li{
         width: 120px;
         height: 45px;
         font-size:16px;
@@ -260,7 +260,7 @@
         list-style: none;
         float:left;
     }
-    .divider{
+    .modal-cy-ul li.divider{
         width: 0;
         height: 14px;
         overflow: hidden;
@@ -351,7 +351,35 @@
         min-width: 250px;
         min-height: 45px;
         color: #888;
-
+    }
+    .btn-pair{
+        margin-top: 20px;
+        float: left;
+        margin-left: 30px;
+    }
+    .btn{
+        width: 106px;
+        height:38px;
+        color: #fff;
+        text-align: center;
+        border-radius: 1.25rem;
+        outline:none;
+        border:1px solid transparent;
+    }
+    .btn-primary{
+        background-color: #22d7bb;
+        border-color: #22d7bb;
+    }
+    .btn-primary:hover {
+        box-shadow: 0 2px 5px 1px rgba(34,215,187,.6);
+    }
+    .btn-link{
+         background:none;
+         color:#ccc;
+    }
+    .btn-link:hover {
+        color: #22d7bb;
+        text-decoration: none;
     }
 </style>
 <template>
@@ -427,6 +455,10 @@
                                         <div class="member-panel-body"></div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="btn-pair">
+                                <button class="btn btn-primary" @click.stop="toggles()">确定</button>
+                                <button class="btn btn-link" @click.stop="toggles()">取消</button>
                             </div>
                         </div>
                     </div>
@@ -524,7 +556,6 @@
                 showi:false,
                 dialog:false,
                 dialogs:false,
-                cIndex: -1,
             }
             },
             methods:{
