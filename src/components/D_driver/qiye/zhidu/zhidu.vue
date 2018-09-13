@@ -1,6 +1,6 @@
 <style scoped>
     .right_box{
-        width:calc(100% - 241px);
+        width:100%;
         position: absolute;
         right:0;
         top:0;
@@ -71,7 +71,7 @@
     .icon1{
         font-size: 20px;
         margin: 0 10px 4px 0;
-        color: rgb(249, 105, 170);
+        color: rgb(34, 215, 187);
     }
     .icon2{
         margin-left: 5px;
@@ -125,7 +125,7 @@
         color: #22d7bb;
     }
     .icon01{
-        color: rgb(112, 118, 250);
+        color: rgb(57, 186, 93);
         font-size: 35px;
         vertical-align: middle;
         margin-right: 12px;
@@ -138,19 +138,64 @@
         color: #fff!important;
         padding:6px 8px;
     }
+    .dorpdown{
+        box-shadow: 0 0 24px rgba(0,0,0,.18);
+        border-radius: 0;
+        border: 0;
+        min-width: 230px;
+        z-index: 1100;
+        position: absolute;
+        text-align: left;
+        font-size: 14px;
+        background: #FFF;
+        top: 40.2344px;
+        left: 12px029.33px;
+    }
+    .dorpdown li{
+        display: block;
+        padding: 0;
+        margin: 0 0 2px;
+        cursor: pointer;
+        -webkit-transition: background .2s;
+    }
+    .dorpdown li a{
+        display: block;
+        padding: 5px 18px;
+        line-height: 30px;
+        color: #666;
+        text-decoration: none;
+        box-sizing: border-box;
+        transition: padding-left .2s;
+    }
+    .dorpdown li:hover {
+        box-shadow: 0 0 8px 2px #eee; 
+    }
 </style>
+
 <template>
     <div class="right_box">
         <div class="right_header">
             <div class="right_htit">
                 <div>
                     <i class="iconfont icon1 icon-wenjianjiabiheicon"></i>
-                    个人网盘
+                    企业网盘
                     <i class="iconfont icon2 icon-jiantou"></i>
                 </div>
             </div>
             <div class="right_hsc">
                 <button class="right_hbtn">+ 新建</button>
+                <ul class="dorpdown">
+                    <li>
+                        <a href="javascript:;">
+                            <span class="ng-binding">新建文件夹</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="javascript:;">
+                            <span class="ng-binding">新建在线文档</span>
+                        </a>
+                    </li>
+                </ul>
                 <div class="upload_btn">
                     <i class="iconfont icon3 icon-uploading"></i>
                     上传文件
@@ -178,7 +223,7 @@
                 <div class="file_name">
                     <span class="ng_scope">
                         <i class="iconfont icon01 icon-wenjianjiabiheicon"></i>
-                        person
+                        公司制度1
                     </span>
                 </div> 
                 <div class="file_size">
@@ -196,7 +241,9 @@
                 </div>
             </li>
         </div>
+        
         <router-view></router-view>
+
     </div>
 </template>
 
