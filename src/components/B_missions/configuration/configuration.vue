@@ -11,12 +11,12 @@
         		</li>
         	</ul>
         </div>
-        <!-- <div class="b">
-        	<div class="tu">
-        		<img src="../../../assets/B-k.png">
-        	</div>
-        </div> -->
-        <router-view></router-view>
+		<div class='thy'>
+			<div class='thy-layout'>
+				<router-view></router-view>
+			</div>
+		</div>
+        
     </div>
 </template>
 
@@ -26,24 +26,24 @@ export default {
 		return{
 			cen:[
 				{
-					title:'作业',
-        			url:"/B_missions/configuration/project",
+					title:'项目',
+        			url:"/B_missions/configuration/project/",
 				},
 				{
 					title:'任务',
-        			url:"/B_missions/configuration/test",
+        			url:"/B_missions/configuration/task/",
 				},
 				{
 					title:'安全',
-        			url:"/B_missions/configuration/security",
+        			url:"/B_missions/configuration/security/",
 				},
 				{
 					title:'高级',
-        			url:"/B_missions/configuration/advance",
+        			url:"/B_missions/configuration/advance/",
 				},
 				{
 					title:'全局',
-        			url:"/B_missions/configuration/global",
+        			url:"/B_missions/configuration/global/",
 				}
 			]
 		}
@@ -52,11 +52,14 @@ export default {
 </script>
 
 <style scoped>
-	div{
-		height:100%;
-	}
 	*{
 		box-sizing: border-box;
+	}
+	a{
+		text-decoration: none;
+	}
+	ul{
+		list-style: none!important;
 	}
 	.t{
 		height:50px;
@@ -102,23 +105,20 @@ export default {
 		color:#333;
 		font-size: 14px;
 	}
-	.b{
-    	flex: 1;
-	    display: flex;
-	    flex-direction: column;
-	    padding: 15px;
-	    height: calc(100% - 50px);
+	.thy{
+		display: flex;
+		flex-direction: column;
+		flex: auto;
+		height: 100%;
+		background: 0 0;
 	}
-	.b .tu{
-		width: 100%;
-		height:100%;
-    	background: #fff;
-    	position: relative;
-	}
-	.b .tu img{
-		position: absolute;
-		top:45%;
-		left:45%;
+	.thy .thy-layout{
+		height: 38px;
+		line-height: 38px;
+		display: flex;
+		flex: 0 0 auto;
+		background: rgba(253,253,253,.97);
+		padding: 0 15px;
 	}
 	
 </style>

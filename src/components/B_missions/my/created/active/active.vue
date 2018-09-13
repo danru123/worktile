@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <h1>我是任务</h1>
-    </div>
+   <h1>123</h1>
 </template>
 
 <script>
     export default {
-        name: "news"
+        
     }
 </script>
 

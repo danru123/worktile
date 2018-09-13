@@ -5,10 +5,14 @@
                 <router-link :to='item.url'>
                     {{item.title}}
                 </router-link>
+                <span>|</span>
             </li>
         </ul>
-        <router-view></router-view>
+        <div class="t">
+            <router-view></router-view>
+        </div>
     </div>
+    
 </template>
 
 <script>
@@ -17,16 +21,12 @@
             return{
                 cen:[
                     {
-                        title:'角色管理',
-                        url:"/B_missions/configuration/security/role-mode",
+                        title:'活动任务',
+                        url:"/B_missions/my/delegated/active",
                     },
                     {
-                        title:'安全管理',
-                        url:"/B_missions/configuration/security/safe-mode",
-                    },
-                    {
-                        title:'权限管理',
-                        url:"/B_missions/configuration/security/permission-mode",
+                        title:'完成任务',
+                        url:"/B_missions/my/delegated/finish",
                     }
                 ]
             }
@@ -41,10 +41,17 @@
     ul{
         list-style: none!important;
     }
-    .box{
-		margin-left: 26px;
+	.box{
+
     	margin-right: 7px;
         width:100%;
+        height: 38px;
+		line-height: 38px;
+		display: flex;
+		flex: 0 0 auto;
+		background: rgba(253,253,253,.97);
+		padding: 0 15px;
+        position: relative;
 	}
     .box .u{
         overflow:hidden
@@ -69,5 +76,9 @@
     }
     .box .u li.active a{
         color: #22d7bb;
+    }
+    .t{
+        position: absolute;
+        top: 50px;
     }
 </style>

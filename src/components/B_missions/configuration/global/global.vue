@@ -1,12 +1,28 @@
 <template>
     <div>
-        <h1>我是全局</h1>
+        <ul>
+            <li v-for='(item,index) of cen' :class="{active:$route.name.indexOf(item.title) != -1}">
+                <router-link :to='item.url'>
+                    {{item.title}}
+                </router-link>
+            </li>
+        </ul>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
     export default {
-        name: "news"
+        data(){
+            return{
+                cen:[
+                    {
+                        title:'工作组建',
+                        url:"/B_missions/configuration/global/addons",
+                    }
+                ]
+            }
+        }
     }
 </script>
 

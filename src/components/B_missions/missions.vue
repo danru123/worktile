@@ -57,12 +57,12 @@
         		vList:[
         			{
         				title:'配置中心',
-        				url:"/B_missions/configuration/",
+        				url:"/missions/configuration/",
         				icon:"icon-peizhizhongxin1"
         			},
         			{
         				title:'回收站',
-        				url:"/B_missions/trash/",
+        				url:"/missions/trash/",
         				icon:"icon-huishouzhan"
         			}
         		],
@@ -70,12 +70,12 @@
         		work:[
         			{
         				title:'下属任务',
-        				url:"/B_missions/subordinate/",
+        				url:"/missions/subordinate/",
         				icon:"icon-xiashurenwu-"
         			},
         			{
         				title:'我的任务',
-        				url:"/B_missions/my/",
+        				url:"/missions/my/",
         				icon:"icon-woderenwu"
         			},
         		]
@@ -85,10 +85,8 @@
         	zhuan:function(){
             	this.select = !this.select;
             	if(this.robotH==0){
-                	console.log(1)
                     this.robotH=this.work.length*42+'px'
                 }else{
-                	console.log(2)
                     this.robotH=0;
                 }
         	},
@@ -107,6 +105,12 @@
 <style scoped>
 	*{
 		box-sizing: border-box;
+	}
+	a{
+		text-decoration: none;
+	}
+	ul{
+		list-style: none!important;
 	}
 	.main-body{
 		position: relative;
@@ -296,5 +300,6 @@
 	.C-r{
 		width: 100%;
 		flex:1 1 0;
+		overflow:scroll;
 	}
 </style>

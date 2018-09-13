@@ -17,16 +17,28 @@
             return{
                 cen:[
                     {
-                        title:'角色管理',
-                        url:"/B_missions/configuration/security/role-mode",
+                        title:'任务类型',
+                        url:"/B_missions/configuration/task/type-group",
                     },
                     {
-                        title:'安全管理',
-                        url:"/B_missions/configuration/security/safe-mode",
+                        title:'状态管理',
+                        url:"/B_missions/configuration/task/state",
                     },
                     {
-                        title:'权限管理',
-                        url:"/B_missions/configuration/security/permission-mode",
+                        title:'属性管理',
+                        url:"/B_missions/configuration/task/prop",
+                    },
+                    {
+                        title:'数据管理',
+                        url:"/B_missions/configuration/task/datasource",
+                    },
+                    {
+                        title:'标签管理',
+                        url:"/B_missions/configuration/task/tag-mode",
+                    },
+                    {
+                        title:'优先级管理',
+                        url:"/B_missions/configuration/task/priority-mode",
                     }
                 ]
             }

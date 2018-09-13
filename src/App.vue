@@ -56,7 +56,8 @@
 </script>
 
 <style>
-     #app{
+    #app{
+            width: 100%;
             height: 100%;
         }
       header{
@@ -68,7 +69,7 @@
         overflow-y: hidden;
         float: left;
         }
-        .name{
+       header .name{
           width: 70px;
           height: 88px;
           line-height: 123px;
@@ -78,6 +79,7 @@
         header img{
             width: 50px;
             height: 50px;
+            border-radius: 12px;
         }
         .name img:hover{
           opacity: .7;
@@ -114,6 +116,9 @@
         text-align: center;
         
       }
+      .nav{
+          height: 100%;
+      }
       header a{
             color:#fff;
             display: inline-block;
@@ -121,6 +126,10 @@
             height: 70px;
             line-height: 70px;
             text-decoration: none;
+        }
+      
+      header  ul li a:hover{
+            background: #18bfa4;
         }
 
 </style>
