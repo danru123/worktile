@@ -2,16 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import 'vue2-animate/dist/vue2-animate.min.css';
-
-=======
 import "babel-polyfill"
->>>>>>> wdr
-=======
 
->>>>>>> wxl
+
 Vue.use(Vuex);
 
 Vue.use(VueRouter);
@@ -19,7 +14,6 @@ Vue.use(VueRouter);
 // 使用路由管理几个子组件
 //引入子组件
 const News = require('./components/A_news/news.vue');
-<<<<<<< HEAD
 const Missions = require('./components/B_missions/missions.vue');
 const Calendar = require('./components/C_calendar/calendar.vue');
 const Driver = require('./components/D_driver/driver.vue');
@@ -31,26 +25,12 @@ import all from './components/C_calendar/children/all.vue'
 import members from './components/C_calendar/children/members.vue'
 import my from './components/C_calendar/children/my.vue'
 
-=======
-const missions = require('./components/B_missions/missions.vue');
-const Calendar = require('./components/C_calendar/calendar.vue');
-const driver = require('./components/D_driver/driver.vue');
-const contact = require('./components/E_contact/contact.vue');
->>>>>>> wxl
 
 //路由配置
 const r = [
     {
         path:'/news',
         component:News.default,
-<<<<<<< HEAD
-        name:'消息'
-    },
-    {
-        path:'/missions',
-        component:Missions.default,
-        name:'项目'
-=======
         name:'消息',
         children:[
             {
@@ -165,14 +145,12 @@ const r = [
     },
     {
         path:'/missions',
-        component:missions.default,
-        name:'项目',
->>>>>>> wxl
+        component:Missions.default,
+        name:'项目'
     },
     {
         path:'/calendar',
         component:Calendar.default,
-<<<<<<< HEAD
         name:'日历',
         children:[
             {path:'/calendar/all',component:all},
@@ -231,19 +209,6 @@ const r = [
                 redirect:'/contact/M'
             }
           ]
-=======
-        name:'日历'
-    },
-    {
-        path:'/driver',
-        component:driver.default,
-        name:'网盘'
-    },
-    {
-        path:'/contact',
-        component:contact.default,
-        name:'通讯录'
->>>>>>> wxl
     },
     {
       //如果用户随便输入地址,转到首页   给一个重定位
@@ -255,56 +220,15 @@ const r = [
 //路由初始化
 const router = new VueRouter({
     // 这里的routes 建必须这么写
-<<<<<<< HEAD
    routes : r,
    mode:'history'
-=======
-   routes : r
->>>>>>> wxl
 });
 
-//配置vuex
-const store = new Vuex.Store({
-    state:{
-<<<<<<< HEAD
-      count:1,
-      member:[]
-    },
-    mutations:{
-        ADD(state,payload){
-            state.member.push(payload);
-         },
-         GETALL(state,payload){
-            state.member=payload;
-        },
-    },
-    actions:{
-        async GETALL(context,payload){
-            //请求数据
-            var data=await fetch('../mapList/').then(res=>res.json());
-            context.commit('GETALL',data);
-        },
-        async ADD({commit},payload){
-            //上传数据
-            var data=await fetch('../mapList/',{
-                "method":"POST",
-                "headers":{
-                    "Content-Type":"application/json"
-                },
-                "body":JSON.stringify(payload)
-            }).then(res=>res.json());
-            commit('ADD',data);
-        },
-=======
-      count:1
->>>>>>> wxl
-    }
-});
+
 
 
 new Vue({
   el: '#app',
-    store,
     router,
   // render: h => h(App),
     components:{

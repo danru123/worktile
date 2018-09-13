@@ -1,8 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <div>
-        <h1>我是消息</h1>
-=======
     <div class="new">
         <div class="new_left">
             <div class="new_top">
@@ -77,21 +73,10 @@
                 <a href="javascript:;">取消</a>
             </div>
         </div>
->>>>>>> wxl
     </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-    export default {
-        name: "news"
-    }
-</script>
-
-<style scoped>
-
-</style>
-=======
 import  Vue from 'vue'
 import $ from 'jquery'
 export default {
@@ -571,4 +556,3 @@ export default {
     }
 
 </style>
->>>>>>> wxl

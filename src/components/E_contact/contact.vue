@@ -1,6 +1,5 @@
 <template>
     <div>
-<<<<<<< HEAD
        <div class="main-body-side">
            <div style="overflow:hidden">
                <span class="title ">通讯录</span>
@@ -205,16 +204,6 @@
             tab(i){
                 this.num=i;
             },
-            // submit(){
-            //     var name=$('form .name').val();
-            //     this.$router.options.routes[4].children.push({//插入路由
-            //         name:name,
-            //         path: `/contact/menuItem-${this.menuItemLength + 1}`,
-            //         component: resolve => require(['../E_contact/M/m.vue'], resolve)//将组件用require引进来
-            //     });
-            //     //  this.$store.commit('submit', routes);
-            //     this.$router.addRoutes(this.$router.options.routes);//调用
-            // }
             submit(){
                 this.isShow=!this.isShow;
                 var name=$('form .name').val();
@@ -236,20 +225,12 @@
                 name='';
             }
         }
-=======
-        <h1>我是通讯录</h1>
-    </div>
-</template>
-
-<script>
-    export default {
-        name: "address"
->>>>>>> wxl
     }
 </script>
 
+
+
 <style scoped>
-<<<<<<< HEAD
     .main-body-side{
         position: relative;
         width: 240px;
@@ -507,7 +488,4 @@
         overflow-y: auto;
         box-sizing: border-box;
     }
-=======
-
->>>>>>> wxl
 </style>
