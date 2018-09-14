@@ -2,12 +2,18 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+<<<<<<< HEAD
 import "babel-polyfill"
 import 'vue2-animate/dist/vue2-animate.min.css';
+=======
+import ElementUI from 'element-ui';
+
+>>>>>>> cxl
 Vue.use(Vuex);
 
 Vue.use(VueRouter);
 
+Vue.use(ElementUI);
 // 使用路由管理几个子组件
 //引入子组件
 const News = require('./components/A_news/news.vue');
@@ -547,6 +553,55 @@ const store =new Vuex.Store({
     }
 })
 
+<<<<<<< HEAD
+=======
+//配置vuex
+const store = new Vuex.Store({
+		state:{
+			todos:[]
+		},
+		 mutations:{
+		 	 DEL1(state,payload){
+	            state.todos = state.todos.filter(item => {
+	                return item.id != payload.id;
+	            })
+	        },
+		 	GETALL1(state,payload){
+	            state.todos = payload;
+	        },
+	         ADD1(state,payload){
+	            state.todos.push(payload);
+	        },
+
+		 },
+		 actions:{
+		 	 async GETALL1(context,payload){
+	            // 请求数据
+	            var data = await fetch('/mapList/').then(res=>res.json());
+	            console.log(data);
+	            context.commit('GETALL1',data);
+	        },
+	        async ADD1({commit},payload){
+            // 上传数据
+            var data = await fetch('/mapList/',{
+                "method":"POST",
+                "headers":{
+                    "Content-Type":"application/json"
+                },
+                "body":JSON.stringify(payload)
+            }).then(res => res.json());
+            commit ('ADD1',data);
+        },
+         async DEL1({commit},payload){
+            // 发送delete请求到json-server服务器，自动帮我们删除这条数据，操作data.json 文件
+            var data = await fetch('/mapList/'+payload.id,{
+                "method":"DELETE"
+            }).then(res => res.json());
+            commit("DEL",payload)
+        },
+		 }
+});
+>>>>>>> cxl
 
 
 new Vue({

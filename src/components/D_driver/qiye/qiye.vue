@@ -87,9 +87,12 @@
     .icon4{
         font-size: 12px;
     }
-    .mian_con{
-        height:55px;
+    .main_header {
         line-height: 55px;
+    }
+    .mian_con{
+        height:45px;
+        margin-top:10px;
         color: rgb(102, 102, 102);
         position: relative;
     }
@@ -337,12 +340,49 @@
         width: 25px;
         height: 25px;
         float:left;
-         border-radius: 50px;
+        border-radius: 50px;
+    }
+    .el-button{
+        width: 136px;
+        height: 28px;
+        line-height: 28px;
+        position: absolute;
+        top: 12px;
+        right: 47px;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 20px;
+        background-color: #22d7bb;
+        
+    }
+    .uploaded{
+        display:block;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        line-height: 7px;
+        outline:none;
+    }
+    .is-success{
+        
+    }
+    .right_hsc .el-upload-list--text{
+        width: 891px;
+        position: relative;
+        left: -687px;
+    }
+    .del1{
+        display:none;
+    }
+    .mian_con:hover .del1{
+        display:block;
     }
 </style>
 
 <template>
+
     <div class="right_box">
+
         <div class="right_header">
             <div class="right_htit">
                 <div>
@@ -361,7 +401,7 @@
                                 <h3 class="modal-title" >新建文件夹</h3>
                                 <div class="modal-body">
                                     <div class="group">
-                                        <input type="text" class="wenjian" placeholder="输入文件夹的名称">
+                                        <input type="text" v-model="txt" class="wenjian" placeholder="输入文件夹的名称">
                                     </div>
                                     <ul class="color-labels">
                                          <li class="color-labels-li" v-for="item of colors" :class="item.name"></li>
@@ -382,21 +422,27 @@
                                         </select>
                                     </div>
                                     <div class="btn-pair">
-                                        <button class="btn btn-primary" @click.stop="toggled()">确定</button>
+                                        <button class="btn btn-primary" @click.stop="add()" @click="toggled()">确定</button>
                                         <button class="btn btn-link" @click.stop="toggled()">取消</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <div class="upload_btn">
-                    <i class="iconfont icon3 icon-uploading"></i>
-                    上传文件
-                    <i class="iconfont icon4 icon-xiangxiajiantou"></i>
                 </div>
+                <el-upload
+                  class="upload-demo"
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :on-change="handleChange"
+                  :file-list="fileList3">
+                    <el-button size="small" class="uploaded" type="primary">
+                        <i class="iconfont icon3 icon-uploading"></i>
+                            上传文件
+                        <i class="iconfont icon4 icon-xiangxiajiantou"></i>
+                    </el-button>
+                </el-upload>
             </div>
         </div>
-        <div class="main_box">
+        <div class="main_box" >
             <div class="main_header mian_con">
                 <div class="file_name">
                     <span class="ng_scope">文件名</span>
@@ -412,11 +458,11 @@
                     <i class="iconfont icon0 icon-open-upwards"></i>
                 </div>
             </div>
-            <li class="mian_con">
+            <li class="mian_con"  v-for="item of todos">
                 <div class="file_name">
                     <span class="ng_scope">
                         <i class="iconfont icon01 icon-wenjianjiabiheicon"></i>
-                        公司制度
+                        {{item.title}}
                     </span>
                 </div> 
                 <div class="file_size">
@@ -432,7 +478,11 @@
                 <div class="file_updated">
                     <span class="ng_scope">9月11日 15:55</span>
                 </div>
+                <div class="del1">
+                     <i class="iconfont icon-shanchu" @click="del(item.id)"></i>
+                </div>
             </li>
+            <br>
         </div>
         
         <router-view></router-view>
@@ -442,9 +492,22 @@
 
 <script>
 export default {
+
     data(){
         return {
             shows:false,
+            txt: "",
+            alos:[
+                {
+                    name: '公司制度',
+                },
+                {
+                    name: '资料共享',
+                },
+                {
+                    name: '缺陷管理',
+                }
+            ],
             colors:[
                 {
                     name:'color1'
@@ -491,14 +554,53 @@ export default {
                 {
                     name:'color15'
                 },
-
             ],
+           fileList3: [
+               
+            ]
         }
     },
+    created() {
+            this.$store.dispatch("GETALL1")
+        },
+        computed: {
+            todos() {
+                return this.$store.state.todos
+            }
+        },
     methods:{
         toggled(){
             this.shows = !this.shows;
-        }
+        },
+         handleChange(file, fileList) {
+            this.fileList3 = fileList.slice(-3);
+          },
+          del(id){
+                // 只需要一个id就行了
+                this.$store.dispatch("DEL1",{
+                    id : id
+                })
+            },
+      add() {
+                // 如果为空 就 return 掉 什么都不做    
+                if(this.txt == '') return
+                // 随机一个8位id
+                var id = '';
+                var str = "741852qwertyuioplkjhgfdszxcvbnm0963";
+                for(var i = 0; i < 8; i++) {
+                    //~~ 相当于parseInt
+                    id+= str[~~(Math.random() * str.length)]
+                }
+                // 发送add 新增命令
+                this.$store.dispatch("ADD1",{
+                    title:this.txt,
+                    id : id,
+                    time:new Date().getTime()
+                    
+                });
+                // 点击后 清空 文本框
+                this.txt = ''
+            },
     }
 }
 </script>
