@@ -1,6 +1,7 @@
 {
   "mapList": [
     {
+<<<<<<< HEAD
       "title": "公司制度",
       "id": "gy1iv6jo"
     },
@@ -11,10 +12,21 @@
     {
       "title": "缺陷管理",
       "id": "gy1iv6jo"
+=======
+      "name": "mm",
+      "id": "yj5xm53m",
+      "t": "M"
+    },
+    {
+      "name": "hah",
+      "id": "fnnj3986",
+      "t": "H"
+>>>>>>> shihaoqi
     }
   ],
   "mapItem": [
     {
+<<<<<<< HEAD
       "name": "mm",
       "id": "yj5xm53m",
       "t": "M",
@@ -37,6 +49,9 @@
       "id": "mm375xtj",
       "t": "H",
       "col": "rgb(210,191,141)"
+=======
+      "age": 23
+>>>>>>> shihaoqi
     }
   ]
 }

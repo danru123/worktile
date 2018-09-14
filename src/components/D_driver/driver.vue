@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style scoped>
     .driver_wrap{
         width:calc(100% - 70px);
@@ -569,3 +570,5 @@
     }
 </script>
 
+=======
+>>>>>>> shihaoqi

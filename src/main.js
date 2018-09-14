@@ -2,8 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+<<<<<<< HEAD
 import "babel-polyfill"
 import 'vue2-animate/dist/vue2-animate.min.css';
+=======
+
+import 'vue2-animate/dist/vue2-animate.min.css';
+import "babel-polyfill"
+
+
+>>>>>>> shihaoqi
 Vue.use(Vuex);
 
 Vue.use(VueRouter);
@@ -514,10 +522,9 @@ const router = new VueRouter({
    routes : r,
    mode:'history'
 });
-
-//配置vuex
-const store = new Vuex.Store({
+const store =new Vuex.Store({
     state:{
+<<<<<<< HEAD
       count:1,
       member:[]
     },
@@ -528,16 +535,59 @@ const store = new Vuex.Store({
          GETALL(state,payload){
             state.member=payload;
         },
+=======
+        todos:[]
+    },
+    mutations:{
+         GETALL(state,payload){
+             state.todos=payload;
+         },
+         DEL(state,payload){
+            state.todos=state.todos.filter(item=>{
+                return item.id!=payload.id;
+            })
+         },
+         ADD(state,payload){
+            state.todos.push(payload);
+         },
+         CHANGETITLE(state,payload){
+            // state.todos[payload.id].title = payload.title;
+            state.todos.forEach((item) =>{
+                if (item.id == payload.id) {
+                    item.title = payload.title
+                }
+            })
+         },
+         CHANGEDONE(state,payload){
+             state.todos[payload.done] = !state.todos[payload.done]
+         }
+>>>>>>> shihaoqi
     },
     actions:{
         async GETALL(context,payload){
             //请求数据
+<<<<<<< HEAD
             var data=await fetch('../mapItem/').then(res=>res.json());
             context.commit('GETALL',data);
         },
         async ADD({commit},payload){
             //上传数据
             var data=await fetch('../mapItem/',{
+=======
+            var data=await fetch('/mapList/').then(res=>res.json());
+            context.commit('GETALL',data);
+        },
+        async DEL({commit},payload){
+            //发送delete请求到json-server服务器，自动帮我们删除这条数据，操作data.json文件
+            var data=await fetch('./mapList/'+payload.id,{
+                "method":"DELETE"
+            }).then(res=>res.json());
+            commit('DEL',payload)
+        },
+        async ADD({commit},payload){
+            //上传数据
+            var data=await fetch('./mapList/',{
+>>>>>>> shihaoqi
                 "method":"POST",
                 "headers":{
                     "Content-Type":"application/json"
@@ -546,13 +596,46 @@ const store = new Vuex.Store({
             }).then(res=>res.json());
             commit('ADD',data);
         },
+<<<<<<< HEAD
+=======
+        async CHANGETITLE({commit},payload){
+            // 更新数据，data就是更新后的这条数据
+            var data = await fetch('./maplist/'+payload.id,{
+                "method":"PATCH",
+                "headers":{
+                    "Content-Type":"application/json"
+                },
+                "body":JSON.stringify({title:payload.title})
+            }).then(res => res.json());
+            commit('CHANGETITLE',data);
+        },
+        async CHANGEDONE({commit},payload){
+            // 更新数据，data就是更新后的这条数据
+            var data = await fetch('./maplist/'+payload.id,{
+                "method":"PATCH",
+                "headers":{
+                    "Content-Type":"application/json"
+                },
+                "body":JSON.stringify({done:payload.done})
+            }).then(res => res.json());
+            commit('CHANGEDONE',data);
+        }
+    },
+    getters: {
+        yizuo(state){
+            return state.todos.filter(item=>item.done == true);
+        },
+        weizuo(state) {
+            return state.todos.filter(item => item.done != true);
+        }
+>>>>>>> shihaoqi
     }
-});
+})
+
 
 
 new Vue({
   el: '#app',
-    store,
     router,
   // render: h => h(App),
     components:{

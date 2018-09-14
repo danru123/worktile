@@ -51,11 +51,19 @@
                                 <a href="#" >{{item.t}}</a>
                             </div>
                             <ul>
+<<<<<<< HEAD
                                 <li @click='tab(i)' :class="{cur:i==num}" v-for='items of item.name'>
                                     <span class='channel-icon' :style='{background:items.col}'>
                                         {{item.t}}
                                     </span>                   
                                     <span class="name" @click="routerGo('/contact/M')" >{{items.n}}</span>
+=======
+                                <li @click='tab(i)' :class="{cur:i==num}" >
+                                    <span class='channel-icon'>
+                                        {{item.t}}
+                                    </span>                   
+                                    <span class="name" @click="routerGo('/contact/M')" >{{item.name}}</span>
+>>>>>>> shihaoqi
                                 </li>
                             </ul>
                         </div>
@@ -170,6 +178,7 @@
         },
         created() {
 			// 发送默认 GETALL
+<<<<<<< HEAD
 			this.$store.dispatch("GETALL2")
 		},
         computed: {
@@ -188,6 +197,13 @@
                     }
                 }
                 return arr3;
+=======
+			this.$store.dispatch("GETALL")
+		},
+        computed: {
+            member(){
+                return this.$store.state.member;
+>>>>>>> shihaoqi
             }
         },
         methods:{
@@ -223,12 +239,18 @@
                 console.log(name);
                 var str = "741852qwertyuioplkjhgfdszxcvbnm0963";
                 var id = '';
+<<<<<<< HEAD
                 var user=$('form .user').val();
                 var t=user.substr(0,1).toUpperCase();
+=======
+                var t=name.substr(0,1).toUpperCase();
+                console.log(t);
+>>>>>>> shihaoqi
 				for(var i = 0; i < 8; i++) {
 					//~~ 相当于parseInt
 					id+= str[~~(Math.random() * str.length)]
 				}
+<<<<<<< HEAD
                 // 发送add 新增命令
                 function math1(){
                   return  Math.floor(Math.random()*255);
@@ -246,6 +268,15 @@
                     "col":'rgb('+math1()+','+math2()+','+math3()+')'
                 });
                 $('form input').val('');
+=======
+				// 发送add 新增命令
+				this.$store.dispatch("ADD",{
+					"name":name,
+                    "id": id,
+                    "t":t
+                });
+                name='';
+>>>>>>> shihaoqi
             }
         }
     }
