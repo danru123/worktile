@@ -1,5 +1,6 @@
 <template>
     <div>
+<<<<<<< HEAD
        <div class="main-body-side">
            <div style="overflow:hidden">
                <span class="title ">通讯录</span>
@@ -94,11 +95,15 @@
             </div>
             <router-view></router-view>
         </div>
+=======
+        <h1>我是通讯录</h1>
+>>>>>>> lfm
     </div>
 </template>
 
 <script>
     export default {
+<<<<<<< HEAD
         data(){
             return {
                 header:[
@@ -246,10 +251,14 @@
                 $('form input').val('');
             }
         }
+=======
+        name: "address"
+>>>>>>> lfm
     }
 </script>
 
 <style scoped>
+<<<<<<< HEAD
     .main-body-side{
         position: relative;
         width: 240px;
@@ -410,5 +419,7 @@
         font-size: 12px;
         color:#fff;
         line-height: 23px;
+=======
+>>>>>>> lfm
 
 </style>

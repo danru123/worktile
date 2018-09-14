@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="new">
         <div class="cover" v-show='isShow == false'></div>
         <div class="new_left">
@@ -73,10 +74,15 @@
                 <a href="javascript:;">取消</a>
             </div>
         </div>
+=======
+    <div>
+        <h1>我是消息</h1>
+>>>>>>> lfm
     </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import  Vue from 'vue'
 export default {
     data(){
@@ -569,5 +575,13 @@ export default {
         position: relative;
         height: 130px;
     }
+=======
+    export default {
+        name: "news"
+    }
+</script>
+
+<style scoped>
+>>>>>>> lfm
 
 </style>
