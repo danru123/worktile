@@ -23,14 +23,13 @@
 
             <!-- 团队日程 -->
             <router-link to="/calendar/all" class="toc-section" >
-                <div class="section-header schedule">
-                    <a><div class="tran"></div></a>
+                <div class="section-header schedule" @click="rotate()">
+                    <a><div class="tran" :class="{anTran:addTran}"></div></a>
                     <a>团队日程</a>
                     <a><i class="iconfont icon-shenglvehao-"></i></a>
                 </div>
-                <div class="section-body">
-                    <transition name="fade">
-                    <ul v-show="teamShow">
+                <div class="section-body" :style="{height:isHeight}">
+                    <ul>
                         <li>
                             <i class="side iconfont" @click="add_yes" :class="{'icon-danduduihao1':yes}"></i>
                             <span>会议安排</span>
@@ -52,7 +51,6 @@
                             <i class="iconfont icon-shenglvehao-"></i>
                         </li>
                     </ul>
-                    </transition>
                 </div>
             </router-link>
             <!-- 成员日程 -->
@@ -69,11 +67,10 @@
         </div>
         <transition name="fade">
           <div class="mark" v-show="isShow">
-            <create :isshow="isShow" @close="getCshow"></create>
+            <create :isshow="isShow" @close="getCshow" :nowTime="nowTime"></create>
           </div>
         </transition>
-        
-    </div>
+      </div>
 </template>
 
 <script>
@@ -88,16 +85,10 @@ export default {
     return {
       year: 2018,
       month: 9,
-      start_year: 2018,
-      start_month: 1,
-      start_day: 1,
-      end_year: 2018,
-      end_month: 1,
-      end_day: 1,
       isShow: false,
       yes: false,
-      teamShow: false,
-      memberShow: false
+      isHeight:0,
+      addTran:false
     };
   },
   methods: {
@@ -120,10 +111,28 @@ export default {
     },
     getCshow(data){
       this.isShow = data;
+    },
+    rotate(){
+      this.addTran = !this.addTran;
+      if (this.isHeight == 0) {
+        this.isHeight = 4*30+'px';
+      }else{
+        this.isHeight = 0;
+      }
+    },
+    init() {
+      let xinxi = localStorage.getItem('rili');
+        this.nowTime();
+        let thin = [];
+        if (xinxi == null || xinxi == undefined) {
+            localStorage.setItem('rili', JSON.stringify(thin));
+        } else {
+            return false;
+        }
     }
-    
   },
   created() {
+    this.init();
   }
 };
 </script>
@@ -223,7 +232,7 @@ div.right {
   .section-body {
     width: 100%;
     overflow: hidden;
-    height: auto;
+    transition: all 0.5s;
     ul {
       width: 100%;
       padding-left: 40px;
@@ -275,7 +284,6 @@ div.tran:hover {
 }
 
 div.big-Box{
-  position: relative;
   div.mark{
     position: absolute;
     top: 0;
@@ -284,5 +292,8 @@ div.big-Box{
     height: 100%;
     overflow: hidden;
   }
+}
+.anTran{
+  transform: rotate(45deg);
 }
 </style>

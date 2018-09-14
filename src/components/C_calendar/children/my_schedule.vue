@@ -3,7 +3,7 @@
     <div class="box" v-for="(item,index) in schedule">
         <table>
             <tr v-for="child in item">
-                <td v-for='txt of child' :style="{width:1000 / 7 * txt.colspan +'px'}" :colspan="txt.colspan" >{{txt.title}}{{txt.bgc}}</td>
+                <td v-for='txt of child' :style="{width:1000 / 7 * txt.colspan +'px',background:txt.bg}" :class="{cur:txt.title}"  :colspan="txt.colspan" >{{txt.title}}</td>
             </tr>
         </table>
     </div> 
@@ -20,7 +20,6 @@ export default {
     schedule() {
       var arr = [];
       var s = JSON.parse(localStorage.getItem("rili"));
-      
       for (var i = 0; i < this.calender.length / 7; i++) {
         arr.push([]);
         for (var j = 0; j < 3; j++) {
@@ -67,6 +66,7 @@ export default {
                   // var nowWeekDuring = during + week[i][j].week <= 7 ? during : 7 - week[i][j].week;
 
                   week[i][j].title = item.title;
+                  week[i][j].bg = item.bg;
                   week[i][j].colspan = nowWeekDuring;
                   week[i].splice(j + 1, nowWeekDuring - 1);
                   // 上锁
@@ -120,7 +120,9 @@ div.box{
             td{
                 border: none;
                 height: 25px;
-                
+            }
+            td.cur{
+              color:#fff;
             }
         }
     }

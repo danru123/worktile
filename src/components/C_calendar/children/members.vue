@@ -3,14 +3,13 @@
         <div class="header"> 
             <div class="logo">
                 <i class="iconfont icon-riliriqi"></i>
-                <span>成员日程</span>
+                <span>我的日程</span>
             </div>
             <div class="header_right">
-                <button class="create">+ 新建日程</button>
+                <button class="create" @click="feishow">+ 新建日程</button>
                 <ul>
                     <li><button>月</button></li>
                     <li><button>周</button></li>
-                    
                 </ul>
             </div>
             <div class="center">
@@ -35,27 +34,35 @@
             <tbody>
                 <tr v-for="(item,index) in calender.length / 7">
                     <td v-for="item in 7" :class="{cur:calender[7*index+(item-1)].cur}">{{calender[7*index + (item
-                        -1)].fullDay}}</td>
+                        -1)].day}}</td>
                 </tr>
             </tbody>
         </table>
+        <schedule class="schedule" :calender="calender"></schedule>
+        
     </div>
 </template>
 
 <script>
+import schedule from "./my_schedule";
 export default {
+  components: {
+    schedule,
+  },
   data() {
     return {
       year: 1970,
-      month: 1
+      month: 1,
     };
   },
-
+  props: ['show'],
   created() {
     this.nowYM();
   },
   computed: {
     calender() {
+      console.log(this.show);
+      
       var arr = [];
       var month = new Date(this.year, this.month, 0).getDate(); // 本月天数
       var months = new Date(this.year, this.month - 1, 0).getDate(); // 上月天数
@@ -74,7 +81,8 @@ export default {
         arr.unshift({
           day: months,
           cur: true,
-          fullDay: `${buling(months)}`
+          day: `${buling(months)}`,
+          fullDay: `${pyear}${buling(pmonth)}${buling(months)}`
         });
         months--;
       }
@@ -84,7 +92,8 @@ export default {
         arr.push({
           day: _a,
           cur: false,
-          fullDay: `${buling(_a)}`
+          day: `${buling(_a)}`,
+          fullDay: `${this.year}${buling(this.month)}${buling(_a)}`
         });
         _a++;
       }
@@ -95,7 +104,8 @@ export default {
         arr.push({
           day: _a,
           cur: true,
-          fullDay: `${buling(_a)}`
+          day: `${buling(_a)}`,
+          fullDay: `${nyear}${buling(nmonth)}${buling(_a)}`
         });
         _a++;
       }
@@ -124,20 +134,15 @@ export default {
         this.year++;
         this.month = 1;
       }
+    },
+    feishow(){
+      this.$emit('Fshow',!this.show)
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-table {
-  width: calc(100% - 20px);
-  height: 100%;
-  margin: 10px;
-  margin-right: 10px;
-  background: #fff;
-  border-collapse: collapse;
-}
 div.header {
   width: 100%;
   height: 50px;
@@ -242,6 +247,12 @@ div.title {
   text-align: center;
 }
 table {
+  width: calc(100% - 20px);
+  height: 100%;
+  margin: 10px;
+  margin-right: 10px;
+  background: #fff;
+  border-collapse: collapse;
   th {
     font-weight: normal;
     height: 40px;
@@ -262,5 +273,20 @@ table {
 }
 td.cur {
   color: gray;
+}
+div.box {
+  position: relative;
+  div.schedule {
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: 100%;
+    overflow: hidden;
+  }
+}
+div.mark_create{
+    position: absolute;
+    top: 0;
 }
 </style>

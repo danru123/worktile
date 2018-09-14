@@ -2,7 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+
 import 'vue2-animate/dist/vue2-animate.min.css';
+import "babel-polyfill"
+
 
 Vue.use(Vuex);
 
@@ -28,7 +31,117 @@ const r = [
     {
         path:'/news',
         component:News.default,
-        name:'消息'
+        name:'消息',
+        children:[
+            {
+                path:'/news/new_adriver/',
+                component:require('./components/A_news/new_adriver/new_adriver.vue').default,
+                name:'项目助手消息',
+                children:[
+                    {
+                        path:'/news/new_adriver/noread',
+                        component:require('./components/A_news/new_adriver/noread/noread.vue').default,
+                        name:'未读项目助手',
+                    },
+                    {
+                        path:'/news/new_adriver/yesread',
+                        component:require('./components/A_news/new_adriver/yesread/yesread.vue').default,
+                        name:'已读项目助手',
+                    },
+                    {
+                        path:'/news/new_adriver/detail',
+                        component:require('./components/A_news/new_adriver/detail/detail.vue').default,
+                        name:'待处理项目助手',
+                    },
+                    {
+                        path:'/news/new_adriver/',
+                        redirect:'/news/new_adriver/noread'
+                    }
+                ]
+            },
+            {
+                path:'/news/new_brobot',
+                component:require('./components/A_news/new_brobot/new_brobot.vue').default,
+                name:'小特机器人',
+                children:[
+                    {
+                        path:'/news/new_brobot/a_mess',
+                        component:require('./components/A_news/new_brobot/a_mess/a_mess.vue').default,
+                        name:'消息小特机器人'
+                    },
+                    {
+                        path:'/news/new_brobot/b_file',
+                        component:require('./components/A_news/new_brobot/b_file/b_file.vue').default,
+                        name:'文件小特机器人'
+                    },
+                    {
+                        path:'/news/new_brobot/c_info',
+                        component:require('./components/A_news/new_brobot/c_info/c_info.vue').default,
+                        name:'固定信息小特机器人'
+                    },
+                    {
+                        path:'/news/new_brobot/',
+                        redirect:'/news/new_brobot/a_mess'
+                    }
+                ]
+            },
+            {
+                path:'/news/new_ccom',
+                component:require('./components/A_news/new_ccom/new_ccom.vue').default,
+                name:'企业公告',
+                children:[
+                    {
+                        path:'/news/new_ccom/a_com1',
+                        component:require('./components/A_news/new_ccom/a_com1/a_com1.vue').default,
+                        name:'消息企业公告'
+                    },
+                    {
+                        path:'/news/new_ccom/b_com2',
+                        component:require('./components/A_news/new_ccom/b_com2/b_com2.vue').default,
+                        name:'文件企业公告'
+                    },
+                    {
+                        path:'/news/new_ccom/c_com3',
+                        component:require('./components/A_news/new_ccom/c_com3/c_com3.vue').default,
+                        name:'固定信息企业公告'
+                    },
+                    {
+                        path:'/news/new_ccom/',
+                        redirect:'/news/new_ccom/a_com1'
+                    }
+                ]
+            },
+            {
+                path:'/news/new_eday',
+                component:require('./components/A_news/new_eday/new_eday.vue').default,
+                name:'日程助手',
+                children:[
+                    {
+                        path:'/news/new_eday/a_day1',
+                        component:require('./components/A_news/new_eday/a_day1/a_day1.vue').default,
+                        name:'消息日程助手'
+                    },
+                    {
+                        path:'/news/new_eday/b_day2',
+                        component:require('./components/A_news/new_eday/b_day2/b_day2.vue').default,
+                        name:'文件日程助手'
+                    },
+                    {
+                        path:'/news/new_eday/c_day3',
+                        component:require('./components/A_news/new_eday/c_day3/c_day3.vue').default,
+                        name:'固定信息日程助手'
+                    },
+                    {
+                        path:'/news/new_eday/',
+                        redirect:'/news/new_eday/a_day1'
+                    }
+                ]
+            },
+            {
+                path:'/news/',
+                redirect:'/news/new_adriver'
+            },
+        ],
     },
     {
         path:'/missions',
@@ -80,6 +193,20 @@ const r = [
                 path:'/contact/M',
                 component:require('./components/E_contact/M/m.vue').default,
                 name:"m",
+            },
+            {
+                path:'/contact/channels/123',
+                component:require('./components/E_contact/channels/123.vue').default,
+                name:"123",
+            },
+            {
+                path:'/contact/channels/forth',
+                component:require('./components/E_contact/channels/forth.vue').default,
+                name:"四组",
+            },
+            {
+                path:'/contact/',
+                redirect:'/contact/M'
             }
           ]
     },
@@ -96,18 +223,95 @@ const router = new VueRouter({
    routes : r,
    mode:'history'
 });
-
-//配置vuex
-const store = new Vuex.Store({
+const store =new Vuex.Store({
     state:{
-      count:1
+        todos:[]
+    },
+    mutations:{
+         GETALL(state,payload){
+             state.todos=payload;
+         },
+         DEL(state,payload){
+            state.todos=state.todos.filter(item=>{
+                return item.id!=payload.id;
+            })
+         },
+         ADD(state,payload){
+            state.todos.push(payload);
+         },
+         CHANGETITLE(state,payload){
+            // state.todos[payload.id].title = payload.title;
+            state.todos.forEach((item) =>{
+                if (item.id == payload.id) {
+                    item.title = payload.title
+                }
+            })
+         },
+         CHANGEDONE(state,payload){
+             state.todos[payload.done] = !state.todos[payload.done]
+         }
+    },
+    actions:{
+        async GETALL(context,payload){
+            //请求数据
+            var data=await fetch('/mapList/').then(res=>res.json());
+            context.commit('GETALL',data);
+        },
+        async DEL({commit},payload){
+            //发送delete请求到json-server服务器，自动帮我们删除这条数据，操作data.json文件
+            var data=await fetch('./mapList/'+payload.id,{
+                "method":"DELETE"
+            }).then(res=>res.json());
+            commit('DEL',payload)
+        },
+        async ADD({commit},payload){
+            //上传数据
+            var data=await fetch('./mapList/',{
+                "method":"POST",
+                "headers":{
+                    "Content-Type":"application/json"
+                },
+                "body":JSON.stringify(payload)
+            }).then(res=>res.json());
+            commit('ADD',data);
+        },
+        async CHANGETITLE({commit},payload){
+            // 更新数据，data就是更新后的这条数据
+            var data = await fetch('./maplist/'+payload.id,{
+                "method":"PATCH",
+                "headers":{
+                    "Content-Type":"application/json"
+                },
+                "body":JSON.stringify({title:payload.title})
+            }).then(res => res.json());
+            commit('CHANGETITLE',data);
+        },
+        async CHANGEDONE({commit},payload){
+            // 更新数据，data就是更新后的这条数据
+            var data = await fetch('./maplist/'+payload.id,{
+                "method":"PATCH",
+                "headers":{
+                    "Content-Type":"application/json"
+                },
+                "body":JSON.stringify({done:payload.done})
+            }).then(res => res.json());
+            commit('CHANGEDONE',data);
+        }
+    },
+    getters: {
+        yizuo(state){
+            return state.todos.filter(item=>item.done == true);
+        },
+        weizuo(state) {
+            return state.todos.filter(item => item.done != true);
+        }
     }
-});
+})
+
 
 
 new Vue({
   el: '#app',
-    store,
     router,
   // render: h => h(App),
     components:{

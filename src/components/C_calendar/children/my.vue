@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 <tr v-for="(item,index) in calender.length / 7">
-                    <td v-for="item in 7" :class="{cur:calender[7*index+(item-1)].cur}">{{calender[7*index + (item
+                    <td v-for="item in 7" :class="{cur:calender[7*index+(item-1)].cur}" >{{calender[7*index + (item
                         -1)].day}}</td>
                 </tr>
             </tbody>

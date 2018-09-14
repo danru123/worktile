@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="startbox">
         <div class="header">
             <button @click="close"> <i class="iconfont icon-jiantou-copy"></i> </button>
             <div class="title">
@@ -17,13 +17,15 @@
                 <th>五</th>
                 <th>六</th>
             </thead>
-            <tbody id="t_box">
+            <tbody id="tb">
                 <tr v-for="(item,index) in calender.length / 7">
-                    <td v-for="(item,i) in 7" :class="{cur:calender[7*index+(item-1)].cur}" @click="addClass(index,i)">{{calender[7*index + (item
+                    <td v-for="(item,i) in 7" :class="{cur:calender[7*index+(item-1)].cur}" @click="addClass(index,i)" :data-day="calender[7*index + (item
+                        -1)].day">{{calender[7*index + (item
                         -1)].fullDay}}</td>
                 </tr>
             </tbody>
         </table>
+        <button @click="clear" id="clear">清除</button>
     </div>
 </template>
 
@@ -32,10 +34,14 @@ export default {
   data() {
     return {
       year: 1970,
-      month: 1
+      month: 1,
+      c_day:0,
     };
   },
-  
+  props:[
+  	'syear','smonth','sday',
+    'startShow'
+  ],
   created() {
     this.nowYM();
   },
@@ -113,14 +119,31 @@ export default {
         }
     },
     addClass(ind,i){
-   		var tBox = document.getElementById('t_box');
+   		var tBox = document.getElementById('tb');
    		var tr = tBox.getElementsByTagName('tr');
    		for (var j = 0; j < tr.length; j++) {
    			for (var k = 0; k < tr[j].getElementsByTagName('td').length; k++) {
    				tr[j].getElementsByTagName('td')[k].classList.remove('active')
    			}
    		}
-   		tr[ind].getElementsByTagName('td')[i].classList.add('active')
+        
+        var now = tr[ind].getElementsByTagName('td')[i];
+        now.classList.add('active'); 
+        var dataDay = tr[ind].getElementsByTagName('td')[i].getAttribute('data-day');
+        var syear = dataDay.substring(0,4);
+        var smonth = dataDay.substring(4,6);
+        var sday = dataDay.substring(6,8);
+        console.log(syear,smonth,sday)
+        var start = [{
+          'start_year':syear,
+          'start_month':smonth,
+          'start_day':sday
+          }
+        ];
+        this.$emit('start',start);
+    },
+    clear(){
+      this.$emit('ss',this.startShow=!this.startShow)
     }
   }
 };
@@ -137,15 +160,29 @@ button {
   height: 10px;
   outline: none;
   cursor: pointer;
+ margin-top: 10px;
   i{
       display: block;   
+      font-size: 6px;
   }
+}
+div.startbox{
+	text-align: center;
+	div.header{
+		text-align: center;
+		overflow: hidden;
+		width: 160px;
+		margin: 0 auto;
+		button:first-child{
+			margin-left: 40px;
+		}
+	}
 }
 div.title {
   float: left;
   overflow: hidden;
   line-height: 30px;
-  width: calc(100% - 20px);
+  width: calc(100% - 80px);
   text-align: center;
 }
 table{
@@ -173,5 +210,11 @@ td.active{
 }
 td.cur{
     color: gray
+}
+button#clear{
+	width: 50px;
+	height: 20px;
+	margin: 0;
+	float: right;
 }
 </style>

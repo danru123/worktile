@@ -20,40 +20,41 @@
 
 </template>
 <script>
-export default {
-  data() {
-    return {
-      tabNav: [
-        {
-          title: "消息",
-          url: "/news"
-        },
-        {
-          title: "项目",
-          url: "/missions"
-        },
-        {
-          title: "日历",
-          url: "/calendar"
-        },
-        {
-          title: "网盘",
-          url: "/driver"
-}
-      ],
-      tabNav1: [
-        {
-          title: "通讯录",
-          url: "/contact"
+    export default {
+        name: 'app',
+        data () {
+            return {
+                tabNav:[
+                    {
+                        title:'消息',
+                        url:'/news'
+                    },
+                    {
+                        title:'项目',
+                        url:'/missions'
+                    },
+                    {
+                        title:'日历',
+                        url:'/calendar'
+                    },
+                    {
+                        title:'网盘',
+                        url:'/driver'
+                    },
+                ],
+                tabNav1:[
+                     {
+                        title:'通讯录',
+                        url:'/contact/'
+                    }
+                ]
+            }
         }
-      ]
-    };
-  }
-};
+    }
 </script>
 
 <style>
-      #app{
+     #app{
             width: 100%;
             height: 100%;
         }
@@ -71,8 +72,9 @@ export default {
           height: 88px;
           line-height: 123px;
           text-align: center;
+          
           }
-        img{
+       header img{
             width: 50px;
             height: 50px;
             border-radius: 12px;
@@ -127,5 +129,4 @@ export default {
       header  ul li a:hover{
             background: #18bfa4;
         }
-
 </style>
