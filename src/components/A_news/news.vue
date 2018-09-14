@@ -1,11 +1,12 @@
 <template>
     <div class="new">
+        <div class="cover" v-show='isShow == false'></div>
         <div class="new_left">
             <div class="new_top">
                 <span>消息<img src="../../assets/1.png"></span>
                 <img src="../../assets/2.png" class="img1" @click="clo()">
             </div>
-            <input type="text" placeholder="搜索成员、消息" v-model='itein' @change='get1()'>
+            <input type="search" placeholder="搜索成员、消息" v-model='itein' @change='get1()'>
             <ul class="new_nav">
                 
                 <li v-for='(item,index) of vList' :class="{cur : $route.name.indexOf(item.title) != -1}">
@@ -19,7 +20,6 @@
                     <a href="/news/new_brobot/" ref='url'>{{item.title}}</a>
                 </li>
             </ul>
-
         </div>
         <div class="rv">
             <router-view></router-view>
@@ -170,12 +170,12 @@ export default {
         get1:function(){
             var shu = this.itein;
             console.log(shu)
-            // var arr = this.vList;
             this.vList = this.vList.filter(function(item,itein){
                 if(item.title.indexOf(shu) != -1){
                     return item
                 }
-            })       
+            })
+            return this.vList;       
         },
         close:function(index){
             this.vList.splice(index,1);
@@ -196,6 +196,7 @@ export default {
             })
             localStorage.setItem('L',JSON.stringify(this.L));
             this.isShow = !this.isShow;
+            this.$refs.title.value = '';
         }
     },
     created(){
@@ -203,12 +204,19 @@ export default {
         for(var i = 0;i < local.length;i++){
             this.L.push(local[i]);
         } 
-        
-    },
+    }
 }
 </script>
 
 <style scoped>
+    .cover{
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0.2;
+        position: fixed;
+        z-index: 9998;
+    }
     ul li{
         list-style:none;
     }
@@ -525,18 +533,18 @@ export default {
         padding: 0 4px 6px;
     }
 
-
     .tan{
         width: 680px;
         height: 461px;
-        top: 50px;
-        left:24%;
+        top: 10%;
+        left:30%;
         position: absolute;;
         margin: 0 auto;
         background-color: #fff;
         box-shadow: 0 0 1.5rem rgba(0,0,0,.5);
         border: 0 solid rgba(0,0,0,.2);
         border-radius: .3rem;
+        z-index: 9999   ;
     }
     .tan_up{
         padding: 0 1.875rem;

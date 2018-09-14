@@ -2,9 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+<<<<<<< HEAD
 import "babel-polyfill"
 import 'vue2-animate/dist/vue2-animate.min.css';
 import ElementUI from 'element-ui';
+=======
+
+>>>>>>> wxl
 
 Vue.use(Vuex);
 
@@ -14,17 +18,10 @@ Vue.use(ElementUI);
 // 使用路由管理几个子组件
 //引入子组件
 const News = require('./components/A_news/news.vue');
-const Missions = require('./components/B_missions/missions.vue');
+const missions = require('./components/B_missions/missions.vue');
 const Calendar = require('./components/C_calendar/calendar.vue');
-const Driver = require('./components/D_driver/driver.vue');
-const Contact = require('./components/E_contact/contact.vue');
-
-
-
-// 日历子组件
-import all from './components/C_calendar/children/all.vue'
-import members from './components/C_calendar/children/members.vue'
-import my from './components/C_calendar/children/my.vue'
+const driver = require('./components/D_driver/driver.vue');
+const contact = require('./components/E_contact/contact.vue');
 
 //路由配置
 const r = [{
@@ -582,7 +579,6 @@ const store = new Vuex.Store({
     },
   }
 })
-
 
 new Vue({
   el: '#app',

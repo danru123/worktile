@@ -1,11 +1,14 @@
 <template>
-  <div style="height: 100%;width:100%">
+  <div style="height: 100%;">
     <header>
       <div class="name">
           <img src="./assets/name.png" alt="">
       </div>
       <ul>
-        <li v-for="item of tabNav">
+        <!-- 样式要在点击的标题与路由中的标题匹配时展示 -->
+        <!-- <li v-for="item of tabNav"  > -->
+            <li v-for="item of tabNav" :class="{cur : $route.name.indexOf(item.title) != -1}">
+          <!-- 跳转 -->
           <router-link :to='item.url'>{{item.title}}</router-link>
         </li>
       </ul>
@@ -15,7 +18,7 @@
       </div>
     </header>
     <!-- 用于展示路由连接的组件 -->
-    <router-view class="nav"></router-view>
+    <router-view></router-view>
   </div>
 
 </template>
@@ -45,7 +48,7 @@
                 tabNav1:[
                      {
                         title:'通讯录',
-                        url:'/contact/'
+                        url:'/contact'
                     }
                 ]
             }
@@ -73,11 +76,6 @@
           line-height: 123px;
           text-align: center;
           
-          }
-       header img{
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
         }
         .name img:hover{
           opacity: .7;
@@ -129,4 +127,5 @@
       header  ul li a:hover{
             background: #18bfa4;
         }
+
 </style>

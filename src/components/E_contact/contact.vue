@@ -95,11 +95,9 @@
             <router-view></router-view>
         </div>
     </div>
-    
 </template>
 
 <script>
-   import $ from 'jquery'
     export default {
         data(){
             return {
@@ -250,8 +248,6 @@
         }
     }
 </script>
-
-
 
 <style scoped>
     .main-body-side{
@@ -415,124 +411,4 @@
         color:#fff;
         line-height: 23px;
 
-    }
-    i.tran{
-       color:rgb(170, 170, 170);
-       font-size: 12px;
-        margin-right: 10px;
-        transition: all .2s cubic-bezier(.4,.1,.5,1) .1s;
-        display: inline-block;
-    }
-    .caret-down{
-        -webkit-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
-    .cover{
-        width: 100%;
-        height: 100%;
-        background-color:rgba(0,0,0,.3);
-        position: fixed;
-        top:0;
-        left:0;
-        z-index: 1;
-    }
-    .modal-dialog {
-        max-width: 660px;
-        margin: 3.75rem auto;
-        width: auto;
-    }
-    .modal-content{
-        box-shadow: 0 0 1.5rem rgba(0,0,0,.5);
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 0 solid rgba(0,0,0,.2);
-        border-radius: .3rem;
-        height: 390px;
-        z-index: 99;
-    }
-    .modal-header{
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid #eee;
-        border-top-left-radius: .3rem;
-        border-top-right-radius: .3rem;
-        padding: 0 1.875rem;
-        min-height: 1.5;
-        align-items: center;
-        height: 50px;
-    }
-    .modal-close{
-        color: #ddd;
-    line-height: 50px;
-    }
-    .cnt{
-        padding: 30px;
-        box-sizing: border-box;
-    }
-    .form-group{
-        margin-bottom: 1rem;
-    }
-    .form-group label{
-        width: 22%;
-        color: #888;
-        font-size: 14px;
-        font-weight: 400;
-        display: inline-block;
-        text-align: right;
-        margin-right: 10px;
-    }
-    .form-group label::before{
-        content: '*';
-        margin-right: 3px;
-        position: relative;
-        top: 3px;
-        color: #ff5b57;
-        
-    }
-    .form-group input{
-        width: 75%;
-        line-height: 1.5;
-        color: #333;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #eee;
-        border-radius: .25rem;
-        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        outline: none;
-        padding: 10px;
-        box-sizing: border-box;
-    }
-    .form-group input:hover,.form-group input:focus{
-        border-color: #22d7bb;
-    }
-    .btn{
-        color: #fff;
-        background-color: #22d7bb;
-        border-color: #22d7bb;
-        display: inline-block;
-        white-space: nowrap;
-        vertical-align: middle;
-        user-select: none;
-        border: 1px solid transparent;
-        padding: .469rem 26px;
-        font-size: .875rem;
-        line-height: 1.5;
-        min-width: 106px;
-        border-radius: 1.25rem;
-        outline: none;
-        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        margin-left: 145px;
-    }
-    .btn:hover {
-        box-shadow: 0 2px 5px 1px rgba(34,215,187,.6);
-    }
-    .member{
-        height: auto;
-        overflow-y: auto;
-        box-sizing: border-box;
-    }
 </style>
