@@ -51,11 +51,11 @@
                                 <a href="#" >{{item.t}}</a>
                             </div>
                             <ul>
-                                <li @click='tab(i)' :class="{cur:i==num}" v-for='item of shai(item.t)'>
-                                    <span class='channel-icon'>
+                                <li @click='tab(i)' :class="{cur:i==num}" v-for='items of item.name'>
+                                    <span class='channel-icon' :style='{background:items.col}'>
                                         {{item.t}}
                                     </span>                   
-                                    <span class="name" @click="routerGo('/contact/M')" >{{item.name}}</span>
+                                    <span class="name" @click="routerGo('/contact/M')" >{{items.n}}</span>
                                 </li>
                             </ul>
                         </div>
@@ -170,23 +170,27 @@
         },
         created() {
 			// 发送默认 GETALL
-			this.$store.dispatch("GETALL")
+			this.$store.dispatch("GETALL2")
 		},
         computed: {
             member(){
-                return this.$store.state.member;
+                var arr2=[];
+                for(var i=0;i<this.$store.state.member.length;i++){
+                    var key = this.$store.state.member[i].t;
+                    if(arr2[key]){
+                        arr2[key].push({"n":this.$store.state.member[i].name,"col":this.$store.state.member[i].col});						
+                    }else{
+                        arr2[key]=[{"n":this.$store.state.member[i].name,"col":this.$store.state.member[i].col}];
+                    }
+                    var arr3 =[];
+                    for(var key in arr2){
+                        arr3.push({"t":key,"name":arr2[key]});
+                    }
+                }
+                return arr3;
             }
         },
         methods:{
-            shai(value){
-                var arr=[];
-                this.$store.state.member.forEach(function(item,index){
-                    if(item.t==value){
-                        arr.push(item);
-                    }
-                })
-                return arr;
-            },
             routerGo(url){
                 //路由跳转
                 this.$router.push({path:url})
@@ -219,17 +223,27 @@
                 console.log(name);
                 var str = "741852qwertyuioplkjhgfdszxcvbnm0963";
                 var id = '';
-                var t=name.substr(0,1).toUpperCase();
-                console.log(t);
+                var user=$('form .user').val();
+                var t=user.substr(0,1).toUpperCase();
 				for(var i = 0; i < 8; i++) {
 					//~~ 相当于parseInt
 					id+= str[~~(Math.random() * str.length)]
 				}
-				// 发送add 新增命令
-				this.$store.dispatch("ADD",{
-					"name":name,
+                // 发送add 新增命令
+                function math1(){
+                  return  Math.floor(Math.random()*255);
+                }
+                function math2(){
+                  return  Math.floor(Math.random()*255);
+                }
+                function math3(){
+                 return   Math.floor(Math.random()*255);
+                }
+				this.$store.dispatch("ADD2",{
+					"name":user,
                     "id": id,
-                    "t":t
+                    "t":t,
+                    "col":'rgb('+math1()+','+math2()+','+math3()+')'
                 });
                 $('form input').val('');
             }
