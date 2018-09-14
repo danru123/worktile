@@ -507,7 +507,6 @@ const router = new VueRouter({
   mode: 'history'
 });
 const store = new Vuex.Store({
-<<<<<<< HEAD
   state: {
     count: 1,
     member: [],
@@ -580,8 +579,7 @@ const store = new Vuex.Store({
       commit("DEL", payload)
     },
   }
-})}
-});
+})
 
 
 new Vue({
